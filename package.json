@@ -31,14 +31,14 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marcusngooi/COMP229-013-Assignment-2.git"
+    "url": "git+https://github.com/marcusngooi/COMP229-013-F2021-Group-Project.git"
   },
   "author": "HexaCoders",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/marcusngooi/COMP229-013-Assignment-2/issues"
+    "url": "https://github.com/marcusngooi/COMP229-013-F2021-Group-Project/issues"
   },
-  "homepage": "https://github.com/marcusngooi/COMP229-013-Assignment-2#readme",
+  "homepage": "https://github.com/marcusngooi/COMP229-013-F2021-Group-Project#readme",
   "devDependencies": {
     "@types/connect-flash": "^0.0.37",
     "@types/express": "^4.17.13",
