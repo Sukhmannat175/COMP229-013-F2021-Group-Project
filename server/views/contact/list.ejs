@@ -1,0 +1,65 @@
+<!-- Partials -->
+<%- include ../partials/header.ejs %> <%- include ../partials/main_nav.ejs %>
+<%- include ../partials/content.ejs %>
+
+<!-- Main Content -->
+<main class="container">
+  <div class="row">
+    <div class="offset-md-1 col-md-10">
+      <a href="/contact-list/add" class="btn btn-primary" role="button">
+        <i class="fas fa-plus-circle"></i> Add a Contact</a
+      >
+      <br />
+      <table class="table table-bordered table-striped table-hover">
+        <!-- Header Row -->
+        <tr class="d-flex">
+          <th class="text-center col-3">Contact Name</th>
+          <th class="text-center col-2">Contact Number</th>
+          <th class="text-center col-5">Email Address</th>
+          <th class="text-center col-1"></th>
+          <th class="text-center col-1"></th>
+        </tr>
+
+        <!-- Repeatable Template Row -->
+
+        <% for(let count = 0; count < ContactList.length; count++) { %>
+        <tr class="d-flex">
+          <td class="text-center col-3">
+            <%= ContactList[count].contactName %>
+          </td>
+          <td class="text-center col-2">
+            <%= ContactList[count].contactNumber %>
+          </td>
+          <td class="text-center col-5">
+            <%= ContactList[count].emailAddress %>
+          </td>
+          <td class="text-center col-1">
+            <a
+              href="/contact-list/update/<%= ContactList[count]._id %>"
+              class="btn btn-primary"
+            >
+              <i class="fas fa-pencil-alt"></i> Update</a
+            >
+          </td>
+          <td class="text-center col-1">
+            <a
+              href="/contact-list/delete/<%= ContactList[count]._id %>"
+              class="btn btn-danger"
+            >
+              <i class="fas fa-trash-alt"></i> Delete</a
+            >
+          </td>
+        </tr>
+        <% } %>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- Account for Fixed Bottom -->
+<br />
+<br />
+<br />
+<br />
+<!-- Partials -->
+<%- include ../partials/bottom_nav.ejs %> <%- include ../partials/footer.ejs %>

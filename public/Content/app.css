@@ -1,0 +1,22 @@
+/*  COMP229-013 F2021
+    Group Project Part 2 First Release
+    File Name:  app.css
+    Student#:   
+    Name:       
+    Date:       
+ */
+
+/* Set background color for web page body */
+body {
+background-color: aliceblue;
+}
+
+/* Organize contact form */
+.inputInfoLabel {
+    position: absolute;
+    margin-right: 20em;
+}
+
+.inputInfo {
+    margin-left: 150px;
+}
