@@ -37,7 +37,7 @@ mongoDB.once("open", () => {
 // require routes
 let indexRouter = require("../routes/index");
 let usersRouter = require("../routes/users");
-let contactsRouter = require("../routes/contact");
+let contactsRouter = require("../routes/surveys");
 
 let app = express();
 
@@ -83,7 +83,7 @@ passport.deserializeUser(User.deserializeUser());
 // routing
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/survey-list", contactsRouter);
+app.use("/surveys", surveysRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

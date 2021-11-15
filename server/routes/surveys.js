@@ -1,6 +1,6 @@
 /*  COMP229-013 F2021
     Group Project Part 2 First Release
-    File Name:  routes/contact.js
+    File Name:  routes/surveys.js
     Student#:   
     Name:       
     Date:       
@@ -13,7 +13,7 @@ let mongoose = require("mongoose");
 
 let passport = require("passport");
 
-let contactController = require("../controllers/contact");
+let contactController = require("../controllers/survey");
 
 // helper function for guard purposes
 function requireAuth(req, res, next) {

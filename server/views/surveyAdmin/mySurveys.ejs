@@ -16,8 +16,6 @@ include partials/content.ejs %>
         <table class="table table-bordered table-striped table-hover">
           <thead>
             <tr>
-              
-              <th class="text-center">Survey status</th>
               <th class="text-center">Description</th>
               <th class="text-center">Due Date</th>
               <th class="text-center">Update</th>
@@ -27,8 +25,6 @@ include partials/content.ejs %>
             </thead>
             <tbody>
           <!--The body of the table  right now is just a placeholder-->
-     
-              <td class="text-center">Active survey</td>  <!-- to be linked to active survey-->
               <td class="text-center">Car survey</td>
               <td class="text-center">Dec.19.2021</td>
               <td class="text-center">
@@ -38,10 +34,9 @@ include partials/content.ejs %>
                             <i class="fas fa-pencil-alt"></i> Update</a>
               </td>
 
-                
               <!--to delete  set href link to surveys/delete/surveyList[count]._id-->
                <td class="text-center">
-                  <a href="#" class="btn btn-danger">
+                  <a href="/delete/surveyList[count]._id" class="btn btn-danger">
                   <i class="fas fa-trash-alt"></i> Delete</a>                    
               </td>
 

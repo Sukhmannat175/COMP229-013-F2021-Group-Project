@@ -10,19 +10,14 @@ include partials/content.ejs %>
 
       <h3>Survey List </h3>
      
-      <a href="#" class="btn btn-primary"><i class="fa fa-plus"></i> Add Survey</a>
       <br><br>
       <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
           <thead>
-            <tr>
-              
+            <tr> 
               <th class="text-center">Survey status</th>
               <th class="text-center">Description</th>
               <th class="text-center">Due Date</th>
-              <th class="text-center">Update</th>
-              <th class="text-center">Delete</th>
-               <th class="text-center">Show Result</th>
             </tr>
             </thead>
             <tbody>
@@ -30,26 +25,7 @@ include partials/content.ejs %>
      
               <td class="text-center">Active survey</td>  <!-- to be linked to active survey-->
               <td class="text-center">Car survey</td>
-              <td class="text-center">Dec.19.2021</td>
-              <td class="text-center">
-                <!--TODO  add the table after database for survey is set up--> 
-        
-                <a href="#" class="btn btn-warning">
-                            <i class="fas fa-pencil-alt"></i> Update</a>
-              </td>
-
-                
-              <!--to delete  set href link to surveys/delete/surveyList[count]._id-->
-               <td class="text-center">
-                  <a href="#" class="btn btn-danger">
-                  <i class="fas fa-trash-alt"></i> Delete</a>                    
-              </td>
-
-               <td class="text-center">
-                  <a href="#" class="btn btn-success">
-                 <i class="fas fa-poll"></i> Show result</a>                    
-              </td>
-
+              <td class="text-center">Dec.19.2021</td>         
             </tr>
            
           </tbody>

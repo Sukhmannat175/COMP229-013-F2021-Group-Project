@@ -1,6 +1,6 @@
 /*  COMP229-013 F2021
     Group Project Part 2 First Release
-    File Name:  controllers/contact.js
+    File Name:  controllers/survey.js
     Student#:   
     Name:       
     Date:       
@@ -12,7 +12,7 @@ let router = express.Router();
 let mongoose = require("mongoose");
 
 // create a reference to the model
-let Contact = require("../models/contact");
+let Contact = require("../models/survey");
 
 // logic
 module.exports.displayContactList = (req, res, next) => {
