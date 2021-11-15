@@ -13,7 +13,7 @@ let mongoose = require("mongoose");
 
 let passport = require("passport");
 
-let contactController = require("../controllers/survey");
+let surveysController = require("../controllers/survey");
 
 // helper function for guard purposes
 function requireAuth(req, res, next) {
@@ -25,21 +25,21 @@ function requireAuth(req, res, next) {
 }
 
 // GET Route for the Business Contact List page - READ operation
-router.get("/", requireAuth, contactController.displayContactList);
+router.get("/", requireAuth, surveysController.displayContactList);
 
 /* GET Route for displaying Add page - CREATE operation */
-router.get("/add", contactController.displayAddPage);
+router.get("/add", surveysController.displayAddPage);
 
 /* POST Route for processing Add page - CREATE operation */
-router.post("/add", contactController.processAddPage);
+router.post("/add", surveysController.processAddPage);
 
 /* GET Route for displaying Edit page - UPDATE operation */
-router.get("/update/:id", contactController.displayUpdatePage);
+router.get("/update/:id", surveysController.displayUpdatePage);
 
 /* POST Route for processing Edit page - UPDATE operation */
-router.post("/update/:id", contactController.processUpdatePage);
+router.post("/update/:id", surveysController.processUpdatePage);
 
 /* GET to perform Deletion - DELETE operation */
-router.get("/delete/:id", contactController.performDelete);
+router.get("/delete/:id", surveysController.performDelete);
 
 module.exports = router;
