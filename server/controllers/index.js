@@ -23,27 +23,19 @@ module.exports.displayHomePage = (req, res, next) => {
   });
 };
 
-module.exports.displayAboutPage = (req, res, next) => {
-  res.render("about", {
-    title: "About",
+module.exports.displayCreateSurveyPage = (req, res, next) => {
+  res.render("createSurvey", {
+    title: "Create Survey",
   });
 };
 
-module.exports.displayProjectsPage = (req, res, next) => {
-  res.render("projects", {
-    title: "Projects",
-  });
-};
+module.exports.displayCreateMCQsurveyPage = (req, res, next) => {
+  res.render('createMCQ', {title: 'Create Multiple-choice Survey',displayName: req.user ? req.user.displayName : ''});
+}
 
-module.exports.displayServicesPage = (req, res, next) => {
-  res.render("services", {
-    title: "Services",
-  });
-};
-
-module.exports.displayContactPage = (req, res, next) => {
-  res.render("contactMe", {
-    title: "Contact",
+module.exports.displayMySurveysPage = (req, res, next) => {
+  res.render("mySurveys", {
+    title: "My Surveys",
   });
 };
 

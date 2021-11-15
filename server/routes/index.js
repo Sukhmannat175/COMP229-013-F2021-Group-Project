@@ -18,17 +18,14 @@ router.get("/", indexController.displayHomePage);
 /* GET home page. */
 router.get("/home", indexController.displayHomePage);
 
-/* GET about me page. */
-router.get("/about", indexController.displayAboutPage);
+/* GET Create Survey page. */
+router.get('/createSurvey',indexController.displayCreateSurveyPage);
 
-/* GET projects page. */
-router.get("/projects", indexController.displayProjectsPage);
+/* GET Route for displaying the Add Contact page - CREATE operation. */
+router.get('/createMCQ', indexController.displayCreateMCQsurveyPage);
 
-/* GET services page. */
-router.get("/services", indexController.displayServicesPage);
-
-/* GET contact me page. */
-router.get("/contactMe", indexController.displayContactPage);
+/* GET My Surveys page. */
+router.get('/mySurveys', indexController.displayMySurveysPage);
 
 /* GET Route for displaying Login page*/
 router.get("/login", indexController.displayLoginPage);
