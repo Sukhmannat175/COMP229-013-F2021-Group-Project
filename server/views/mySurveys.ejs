@@ -1,14 +1,66 @@
 <!-- Partials -->
-<%- include partials/header.ejs %> 
-<%- include partials/main_nav.ejs %>
-<%- include partials/content.ejs %>
+<%- include partials/header.ejs %> <%- include partials/main_nav.ejs %> <%-
+include partials/content.ejs %>
 
 <!-- Page Content -->
 <div class="container">
-  
-  <p></p>
+  <div class="row">
+ <!--   <div class="col-md-offset-1 col-md-10"> -->
+    <div class="col-lg-offset-1 col-lg-10"> 
 
-  
+      <h3>Survey List </h3>
+     
+      <a href="#" class="btn btn-primary"><i class="fa fa-plus"></i> Add Survey</a>
+      <br><br>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              
+              <th class="text-center">Survey status</th>
+              <th class="text-center">Description</th>
+              <th class="text-center">Due Date</th>
+              <th class="text-center">Update</th>
+              <th class="text-center">Delete</th>
+               <th class="text-center">Show Result</th>
+            </tr>
+            </thead>
+            <tbody>
+          <!--The body of the table  right now is just a placeholder-->
+     
+              <td class="text-center">Active survey</td>  <!-- to be linked to active survey-->
+              <td class="text-center">Car survey</td>
+              <td class="text-center">Dec.19.2021</td>
+              <td class="text-center">
+                <!--TODO  add the table after database for survey is set up--> 
+        
+                <a href="#" class="btn btn-warning">
+                            <i class="fas fa-pencil-alt"></i> Update</a>
+              </td>
+
+                
+              <!--to delete  set href link to surveys/delete/surveyList[count]._id-->
+               <td class="text-center">
+                  <a href="#" class="btn btn-danger">
+                  <i class="fas fa-trash-alt"></i> Delete</a>                    
+              </td>
+
+               <td class="text-center">
+                  <a href="#" class="btn btn-success">
+                 <i class="fas fa-poll"></i> Show result</a>                    
+              </td>
+
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+              <div class="col-lg-offset-1 col-lg-10 text-center"> 
+     
+        <ul class="pagination pagination-lg pager" id="myPager"></ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Account for Fixed Bottom -->
@@ -18,5 +70,4 @@
 <br />
 
 <!-- Partials -->
-<%- include partials/bottom_nav.ejs %>
-<%- include partials/footer.ejs %>
+<%- include partials/bottom_nav.ejs %> <%- include partials/footer.ejs %>
