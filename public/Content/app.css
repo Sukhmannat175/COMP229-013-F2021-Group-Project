@@ -8,15 +8,23 @@
 
 /* Set background color for web page body */
 body {
-background-color: aliceblue;
-}
-
-/* Organize contact form */
-.inputInfoLabel {
-    position: absolute;
-    margin-right: 20em;
-}
-
-.inputInfo {
-    margin-left: 150px;
-}
+    background-color: aliceblue;
+    }
+    
+    /* Organize contact form */
+    .inputInfoLabel {
+        position: absolute;
+        margin-right: 20em;
+    }
+    
+    .inputInfo {
+        margin-left: 150px;
+    }
+    
+    h1{
+        text-align: center;
+    }
+    .navbar{
+        margin: 0px;
+        padding: 0px;
+    }

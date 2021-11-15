@@ -3,8 +3,8 @@
     <div class="container-fluid">
 
       <!-- Brand Content -->
-      <a class="navbar-brand" href="/">
-        <img src="/Assets/images/logo.png" alt="Logo" width="40" height="40">
+      <a href="/">
+        <img src="/Assets/images/Logo.jpg" alt="Logo" width="" height="70">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,49 +15,25 @@
 
           <li class="nav-item">
             <% if (title == "Home") { %> 
-            <a class="nav-link active" aria-current="page" href="/home"><i class="fas fa-h-square"></i> Home</a>
+            <a class="nav-link active" aria-current="page" href="/home"><i class="fas fa-home"></i> Home</a>
             <% } else { %>
-              <a class="nav-link" href="/home"><i class="fas fa-h-square"></i> Home</a>
+              <a class="nav-link" href="/home"><i class="fas fa-home"></i> Home</a>
             <% } %>  
           </li>
 
           <li class="nav-item">
-            <% if (title == "About") { %> 
-              <a class="nav-link active" aria-current="page" href="/about"><i class="fas fa-address-card"></i> About</a>
+            <% if (title == "Create Survey") { %> 
+              <a class="nav-link active" aria-current="page" href="/createSurvey"><i class="fas fa-edit"></i> Create Survey</a>
               <% } else { %>
-                <a class="nav-link" href="/about"><i class="fas fa-address-card"></i> About</a>
+                <a class="nav-link" href="/createSurvey"><i class="fas fa-edit"></i> Create Survey</a>
               <% } %>  
           </li>
           
           <li class="nav-item">
-            <% if (title == "Projects") { %> 
-              <a class="nav-link active" aria-current="page" href="/projects"><i class="fas fa-project-diagram"></i> Projects</a>
+            <% if (title == "My Surveys") { %> 
+              <a class="nav-link active" aria-current="page" href="/mySurveys"><i class="fas fa-poll"></i> My Surveys</a>
               <% } else { %>
-                <a class="nav-link" href="/projects"><i class="fas fa-project-diagram"></i> Projects</a>
-              <% } %>
-          </li>
-
-          <li class="nav-item">
-            <% if (title == "Services") { %> 
-              <a class="nav-link active" aria-current="page" href="/services"><i class="fas fa-concierge-bell"></i></i> Services</a>
-              <% } else { %>
-                <a class="nav-link" href="/services"><i class="fas fa-concierge-bell"></i> Services</a>
-              <% } %>
-          </li>
-
-          <li class="nav-item">
-            <% if (title == "Contacts") { %> 
-              <a class="nav-link active" aria-current="page" href="/contact-list"><i class="fas fa-briefcase"></i> Business Contacts</a>
-              <% } else { %>
-                <a class="nav-link" href="/contact-list"><i class="fas fa-briefcase"></i> Business Contacts</a>
-              <% } %>
-          </li>
-
-          <li class="nav-item">
-            <% if (title == "Contact") { %> 
-              <a class="nav-link active" aria-current="page" href="/contact"><i class="fas fa-mobile-alt"></i> Contact</a>
-              <% } else { %>
-                <a class="nav-link" href="/contactMe"><i class="fas fa-mobile-alt"></i> Contact</a>
+                <a class="nav-link" href="/mySurveys"><i class="fas fa-poll"></i> My Surveys</a>
               <% } %>
           </li>
           
