@@ -21,7 +21,7 @@ include partials/content.ejs %>
           <tbody>
             <!--The body of the table-->
             <% for(let count = 0; count < SurveyList.length; count++) { %>
-            <tr class="d-flex">
+            <tr>
               <td class="text-center col-2"><%= SurveyList[count].Title %></td>
               <td class="text-center col-4">
                 <%= SurveyList[count].Description %>

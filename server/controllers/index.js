@@ -23,7 +23,6 @@ module.exports.displayHomePage = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      console.log(surveyList[0]);
       res.render("home", {
         title: "Home",
         SurveyList: surveyList,

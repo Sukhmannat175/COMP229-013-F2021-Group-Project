@@ -30,8 +30,26 @@ module.exports.displaySurveyList = (req, res, next) => {
 };
 
 module.exports.displayCreateSurveyPage = (req, res, next) => {
-  res.render("createSurvey", {
+  res.render("surveyAdmin/createSurvey", {
     title: "Create Survey",
+  });
+};
+
+module.exports.processCreateSurveyPage = (req, res, next) => {
+  let newSurvey = Survey({
+    "Title": req.body.title,
+    "DueDate": req.body.duedate,
+    "Description": req.body.description
+  });
+
+  Survey.create(newSurvey, (err, survey) => {
+    if (err) {
+        console.log(err);
+        res.end(err);
+    } else {
+        res.redirect('/')
+        //res.redirect('/survey/addtfquestion');
+    }
   });
 };
 
@@ -42,74 +60,52 @@ module.exports.displayCreateMCQSurveyPage = (req, res, next) => {
   });
 };
 
-module.exports.displayAddPage = (req, res, next) => {
-  res.render("contact/add", {
-    title: "Add Contact",
-    displayName: req.user ? req.user.displayName : "",
-  });
-};
-
-module.exports.processAddPage = (req, res, next) => {
-  let newContact = Contact({
-    contactName: req.body.contactName,
-    contactNumber: req.body.contactNumber,
-    emailAddress: req.body.emailAddress,
-  });
-
-  Contact.create(newContact, (err, Contact) => {
-    if (err) {
-      console.log(err);
-      res.end(err);
-    } else {
-      // refresh the business contact list
-      res.redirect("/surveys");
-    }
-  });
-};
-
-module.exports.displayUpdatePage = (req, res, next) => {
+module.exports.displayUpdateSurveyPage = (req, res, next) => {
   let id = req.params.id;
 
-  Contact.findById(id, (err, contactToUpdate) => {
-    if (err) {
-      console.log(err);
-      res.end(err);
-    } else {
-      // show the edit view
-      res.render("contact/update", {
-        title: "Update Contact",
-        contact: contactToUpdate,
-        displayName: req.user ? req.user.displayName : "",
-      });
-    }
+  Survey.findById(id, (err, surveyToEdit) => {
+      if (err) 
+      {
+          console.log(err);
+          res.end(err);
+      } 
+      else 
+      {
+          //show the update view
+          res.render('surveyAdmin/updateSurvey',
+          {title: 'Edit Survey', survey: surveyToEdit})
+      }
   });
-};
+} 
 
-module.exports.processUpdatePage = (req, res, next) => {
+module.exports.processUpdateSurveyPage = (req, res, next) => {
   let id = req.params.id;
 
-  let updatedContact = Contact({
-    _id: id,
-    contactName: req.body.contactName,
-    contactNumber: req.body.contactNumber,
-    emailAddress: req.body.emailAddress,
-  });
+    let updatedSurvey = Survey({
+        "_id": id,
+        "Title": req.body.title,
+        "DueDate": req.body.duedate,
+        "Description": req.body.description
+    });
 
-  Contact.updateOne({ _id: id }, updatedContact, (err) => {
-    if (err) {
-      console.log(err);
-      res.end(err);
-    } else {
-      // refresh the contact list
-      res.redirect("/surveys");
-    }
-  });
-};
+    Survey.updateOne({_id: id}, updatedSurvey, (err) => {
+        if (err) 
+        {
+            console.log(err);
+            res.end(err);
+        } 
+        else 
+        {
+            // refresh the book list
+            res.redirect('/');
+        }
+    });
+}
 
 module.exports.performDelete = (req, res, next) => {
   let id = req.params.id;
 
-  Contact.remove({ _id: id }, (err) => {
+  Survey.remove({ _id: id }, (err) => {
     if (err) {
       console.log(err);
       res.end(err);

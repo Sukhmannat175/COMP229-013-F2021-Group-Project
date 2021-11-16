@@ -25,29 +25,31 @@ include ../partials/content.ejs %>
             </tr>
             </thead>
             <tbody>
-          <!--The body of the table  right now is just a placeholder-->
-              <td class="text-center">Car survey</td>
-              <td class="text-center">Dec.19.2021</td>
-              <td class="text-center">
-                <!--TODO  add the table after database for survey is set up--> 
-        
-                <a href="#" class="btn btn-warning">
+          <!--The body of the table-->
+          <% for(let count = 0; count < SurveyList.length; count++) { %>
+            <tr>
+              <td class="text-center col-2"><%= SurveyList[count].Title %></td>
+              <td class="text-center col-4">
+                <%= SurveyList[count].Description %>
+              </td>
+              <td class="text-center col-2">
+                <%= SurveyList[count].DueDate %>
+              </td>
+              <td class="text-center">      
+                <a href="/surveys/updateSurvey/<%= SurveyList[count]._id %>" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i> Update</a>
               </td>
-
-              <!--to delete  set href link to surveys/delete/surveyList[count]._id-->
-               <td class="text-center">
-                  <a href="/delete/surveyList[count]._id" class="btn btn-danger">
-                  <i class="fas fa-trash-alt"></i> Delete</a>                    
+              <td class="text-center">
+                <a href="/surveys/delete/<%= SurveyList[count]._id %>" class="btn btn-danger">
+                <i class="fas fa-trash-alt"></i> Delete</a>                    
               </td>
-
-               <td class="text-center">
-                  <a href="#" class="btn btn-success">
-                 <i class="fas fa-poll"></i> Show result</a>                    
+              <td class="text-center">
+                <a href="#" class="btn btn-success">
+               <i class="fas fa-poll"></i> Show Result</a>                    
               </td>
-
             </tr>
-           
+            <% } %>            
+            </tr>
           </tbody>
         </table>
       </div>

@@ -19,22 +19,28 @@
           class="form-control"
           name="title"
           id="title"
-          placeholder="Enter Survey Title"
+          value="<%= survey.Title %>"
           required>
         </div>
 
         <div class="col-sm-3">
           <label for="title">Due Date: </label>
-          <input type="date"
+          <input type="text"
           class="form-control"
           name="duedate"
           id="duedate"
+          value="<%= survey.DueDate %>"
           required>
         </div>
       
       <div class="col-md-7 mb-4">
         <label for="description">Description: </label>
-        <textarea class="form-control" name="description" id="description" placeholder="Enter Description"></textarea>
+        <input type="text"
+          class="form-control"
+          name="description"
+          id="description"
+          value="<%= survey.Description %>"
+          required>
       </div>
       
       <!-- <%// for (let count = 0; count < questions.length; count++) { %>
@@ -61,8 +67,8 @@
             False
           </label>
         </div>
-      <%// } %>      
-      <input type="submit" class="btn btn-warning col-md-3 mb-5 offset-md-1" value="Add Question">       -->
+      <%// } %>
+      <input type="submit" class="btn btn-warning col-md-3 mb-5 offset-md-1" value="Add Question">-->
     </div>
 
     <input class="btn btn-success" type="submit" value="Publish">

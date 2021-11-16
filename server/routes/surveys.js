@@ -27,23 +27,20 @@ function requireAuth(req, res, next) {
 // GET Route for the Survey List page - READ operation
 router.get("/", surveysController.displaySurveyList);
 
-// GET Route for the Create Survey page - READ operation
-router.get("/surveyAdmin/createSurvey", surveysController.displayCreateSurveyPage);
+// GET Route for the Create Survey page - CREATE operation
+router.get("/createSurvey", surveysController.displayCreateSurveyPage);
+
+// POST Route for the Create Survey page - CREATE operation
+router.post("/createSurvey", surveysController.processCreateSurveyPage);
 
 // GET Route for the Create MCQ Survey page - READ operation
 router.get("/createMCQ", surveysController.displayCreateMCQSurveyPage);
 
-/* GET Route for displaying Add page - CREATE operation */
-router.get("/add", surveysController.displayAddPage);
-
-/* POST Route for processing Add page - CREATE operation */
-router.post("/add", surveysController.processAddPage);
-
 /* GET Route for displaying Edit page - UPDATE operation */
-router.get("/update/:id", surveysController.displayUpdatePage);
+router.get("/updateSurvey/:id", surveysController.displayUpdateSurveyPage);
 
 /* POST Route for processing Edit page - UPDATE operation */
-router.post("/update/:id", surveysController.processUpdatePage);
+router.post("/updateSurvey/:id", surveysController.processUpdateSurveyPage);
 
 /* GET to perform Deletion - DELETE operation */
 router.get("/delete/:id", surveysController.performDelete);
