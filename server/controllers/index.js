@@ -15,8 +15,7 @@ let passport = require("passport");
 // create the Model instances
 let userModel = require("../models/user");
 let User = userModel.User; // alias
-let surveyModel = require("../models/survey");
-let Survey = surveyModel.Survey;
+let Survey = require("../models/survey");
 
 // logic
 module.exports.displayHomePage = (req, res, next) => {
@@ -24,10 +23,11 @@ module.exports.displayHomePage = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
+      console.log(surveyList[0]);
       res.render("home", {
         title: "Home",
         SurveyList: surveyList,
-        displayName: req.user ? req.user.displayName : "",
+        //displayName: req.user ? req.user.displayName : "",
       });
     }
   });

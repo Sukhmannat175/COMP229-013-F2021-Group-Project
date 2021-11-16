@@ -12,8 +12,7 @@ let router = express.Router();
 let mongoose = require("mongoose");
 
 // create a reference to the model
-let surveyModel = require("../models/survey");
-let Survey = surveyModel.Survey;
+let Survey = require("../models/survey");
 
 // logic
 module.exports.displaySurveyList = (req, res, next) => {
@@ -21,7 +20,7 @@ module.exports.displaySurveyList = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      res.render("surveys", {
+      res.render("surveyAdmin/mySurveys", {
         title: "My Surveys",
         SurveyList: surveyList,
         displayName: req.user ? req.user.displayName : "",

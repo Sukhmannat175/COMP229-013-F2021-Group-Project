@@ -8,7 +8,6 @@
 
 // require modules for the User Model
 let mongoose = require("mongoose");
-let passportLocalMongoose = require("passport-local-mongoose");
 
 // create a model class
 let Survey = mongoose.Schema(
@@ -23,9 +22,5 @@ let Survey = mongoose.Schema(
   }
 );
 
-// configure options for User Model
-let options = { missingPasswordError: "Wrong / Missing Password" };
-Survey.plugin(passportLocalMongoose, options);
-
 // store model in module.exports container
-module.exports.Survey = mongoose.model("Survey", Survey);
+module.exports = mongoose.model("Survey", Survey);
