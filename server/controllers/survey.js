@@ -29,6 +29,22 @@ module.exports.displayContactList = (req, res, next) => {
   }).sort({ contactName: 1 });
 };
 
+module.exports.displayCreateSurveyPage = (req, res, next) => {
+  res.render("createSurvey", {
+    title: "Create Survey",
+  });
+};
+
+module.exports.displayCreateMCQsurveyPage = (req, res, next) => {
+  res.render('createMCQ', {title: 'Create Multiple-choice Survey', displayName: req.user ? req.user.displayName : ''});
+}
+
+module.exports.displayMySurveysPage = (req, res, next) => {
+  res.render("mySurveys", {
+    title: "My Surveys",
+  });
+};
+
 module.exports.displayAddPage = (req, res, next) => {
   res.render("contact/add", {
     title: "Add Contact",

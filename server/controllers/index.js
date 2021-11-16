@@ -12,31 +12,53 @@ let router = express.Router();
 let mongoose = require("mongoose");
 let passport = require("passport");
 
-// create the User Model instance
+// create the Model instances
 let userModel = require("../models/user");
 let User = userModel.User; // alias
+let mcSurveyQuestionModel = require("../models/mcSurveyQuestion");
+let tfSurveyQuestionModel = require("../models/tfSurveyQuestion");
+let saSurveyQuestionModel = require("../models/saSurveyQuestion");
+let MCSurveyQuestion = mcSurveyQuestionModel.MCSurveyQuestion;
+let TFSurveyQuestion = tfSurveyQuestionModel.TFSurveyQuestion;
+let SASurveyQuestion = saSurveyQuestionModel.SASurveyQuestion;
+let MCSurveyList;
+let TFSurveyList;
+let SASurveyList;
 
 // logic
 module.exports.displayHomePage = (req, res, next) => {
+  // retrieve MCSurveys
+  MCSurveyQuestion.find((err, mcSurveyList) => {
+    if (err) {
+      return console.error(err);
+    } else {
+      MCSurveyList = mcSurveyList;
+    }
+  });
+  // retrieve TFSurveys
+  TFSurveyQuestion.find((err, tfSurveyList) => {
+    if (err) {
+      return console.error(err);
+    } else {
+      TFSurveyList = tfSurveyList;
+    }
+  });
+  // retrieve SASurveys
+  SASurveyQuestion.find((err, saSurveyList) => {
+    if (err) {
+      return console.error(err);
+    } else {
+      SASurveyList = saSurveyList;
+    }
+  });
+  // render home page
   res.render("home", {
-    title: "Home",
-  });
-};
-
-module.exports.displayCreateSurveyPage = (req, res, next) => {
-  res.render("createSurvey", {
-    title: "Create Survey",
-  });
-};
-
-module.exports.displayCreateMCQsurveyPage = (req, res, next) => {
-  res.render('createMCQ', {title: 'Create Multiple-choice Survey',displayName: req.user ? req.user.displayName : ''});
-}
-
-module.exports.displayMySurveysPage = (req, res, next) => {
-  res.render("mySurveys", {
-    title: "My Surveys",
-  });
+    title: "Home", 
+    MCSurveyList: MCSurveyList,
+    TFSurveyList: TFSurveyList,
+    SASurveyList: SASurveyList
+})
+  
 };
 
 module.exports.displayLoginPage = (req, res, next) => {

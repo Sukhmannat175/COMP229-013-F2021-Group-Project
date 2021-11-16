@@ -25,7 +25,7 @@ function requireAuth(req, res, next) {
 }
 
 // GET Route for the Business Contact List page - READ operation
-router.get("/", requireAuth, surveysController.displayContactList);
+router.get("/", surveysController.displayContactList);
 
 /* GET Route for displaying Add page - CREATE operation */
 router.get("/add", surveysController.displayAddPage);
