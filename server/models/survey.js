@@ -16,6 +16,7 @@ let Survey = mongoose.Schema(
     Title: String,
     DueDate: String,
     Description: String,
+    SurveyStatus: String,
   },
   {
     collection: "surveys",
@@ -24,7 +25,7 @@ let Survey = mongoose.Schema(
 
 // configure options for User Model
 let options = { missingPasswordError: "Wrong / Missing Password" };
-User.plugin(passportLocalMongoose, options);
+Survey.plugin(passportLocalMongoose, options);
 
 // store model in module.exports container
 module.exports.Survey = mongoose.model("Survey", Survey);

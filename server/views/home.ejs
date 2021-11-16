@@ -5,34 +5,39 @@ include partials/content.ejs %>
 <!-- Page Content -->
 <div class="container">
   <div class="row">
- <!--   <div class="col-md-offset-1 col-md-10"> -->
-    <div class="col-lg-offset-1 col-lg-10"> 
-
-      <h3>Survey List </h3>
-     
-      <br><br>
+    <!--   <div class="col-md-offset-1 col-md-10"> -->
+    <div class="col-lg-offset-1 col-lg-10">
+      <br />
       <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
           <thead>
-            <tr> 
-              <th class="text-center">Survey status</th>
+            <tr>
+              <th class="text-center">Title</th>
               <th class="text-center">Description</th>
               <th class="text-center">Due Date</th>
+              <th class="text-center">Survey status</th>
             </tr>
-            </thead>
-            <tbody>
-          <!--The body of the table  right now is just a placeholder-->
-     
-              <td class="text-center">Active survey</td>  <!-- to be linked to active survey-->
-              <td class="text-center">Car survey</td>
-              <td class="text-center">Dec.19.2021</td>         
+          </thead>
+          <tbody>
+            <!--The body of the table-->
+            <% for(let count = 0; count < SurveyList.length; count++) { %>
+            <tr class="d-flex">
+              <td class="text-center col-2"><%= SurveyList[count].Title %></td>
+              <td class="text-center col-4">
+                <%= SurveyList[count].Description %>
+              </td>
+              <td class="text-center col-2">
+                <%= SurveyList[count].DueDate %>
+              </td>
+              <td class="text-center col-2">
+                <%= SurveyList[count].SurveyStatus %>
+              </td>
             </tr>
-           
+            <% } %>
           </tbody>
         </table>
       </div>
-              <div class="col-lg-offset-1 col-lg-10 text-center"> 
-     
+      <div class="col-lg-offset-1 col-lg-10 text-center">
         <ul class="pagination pagination-lg pager" id="myPager"></ul>
       </div>
     </div>

@@ -43,6 +43,12 @@ module.exports.displayCreateMCQSurveyPage = (req, res, next) => {
   });
 };
 
+module.exports.displayAddPage = (req, res, next) => {
+  res.render("contact/add", {
+    title: "Add Contact",
+    displayName: req.user ? req.user.displayName : "",
+  });
+};
 
 module.exports.processAddPage = (req, res, next) => {
   let newContact = Contact({

@@ -24,8 +24,8 @@ module.exports.displayHomePage = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      res.render("surveys", {
-        title: "My Surveys",
+      res.render("home", {
+        title: "Home",
         SurveyList: surveyList,
         displayName: req.user ? req.user.displayName : "",
       });
