@@ -36,10 +36,10 @@ router.post("/createSurvey", surveysController.processCreateSurveyPage);
 // GET Route for the Create MCQ Survey page - READ operation
 router.get("/createMCQ", surveysController.displayCreateMCQSurveyPage);
 
-/* GET Route for displaying Edit page - UPDATE operation */
+/* GET Route for displaying Update Survey page - UPDATE operation */
 router.get("/updateSurvey/:id", surveysController.displayUpdateSurveyPage);
 
-/* POST Route for processing Edit page - UPDATE operation */
+/* POST Route for processing Update Survey page - UPDATE operation */
 router.post("/updateSurvey/:id", surveysController.processUpdateSurveyPage);
 
 /* GET to perform Deletion - DELETE operation */
