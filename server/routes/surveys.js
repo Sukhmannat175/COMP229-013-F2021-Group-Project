@@ -34,7 +34,10 @@ router.get("/createSurvey", surveysController.displayCreateSurveyPage);
 router.post("/createSurvey", surveysController.processCreateSurveyPage);
 
 // GET Route for the Create MCQ Survey page - READ operation
-router.get("/createMCQ", surveysController.displayCreateMCQSurveyPage);
+router.get("/createMCQ", surveysController.displayMCQSurveyPage);
+
+//GET Route for the Create TF Survey page - READ Operation
+router.get("/createTF", surveysController.displayTFSurveyPage);
 
 /* GET Route for displaying Update Survey page - UPDATE operation */
 router.get("/updateSurvey/:id", surveysController.displayUpdateSurveyPage);

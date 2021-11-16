@@ -35,6 +35,18 @@ module.exports.displayCreateSurveyPage = (req, res, next) => {
   });
 };
 
+module.exports.displayMCQSurveyPage = (req, res, next) => {
+  res.render("surveyAdmin/createSurvey", {
+    title: "Create MCQ Survey",
+  });
+};
+
+module.exports.displayTFSurveyPage = (req, res, next) => {
+  res.render("surveyAdmin/createSurvey", {
+    title: "Create T/F Survey",
+  });
+};
+
 module.exports.processCreateSurveyPage = (req, res, next) => {
   let newSurvey = Survey({
     "Title": req.body.title,
