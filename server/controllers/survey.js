@@ -12,21 +12,22 @@ let router = express.Router();
 let mongoose = require("mongoose");
 
 // create a reference to the model
-let Contact = require("../models/survey");
+let surveyModel = require("../models/survey");
+let Survey = surveyModel.Survey;
 
 // logic
-module.exports.displayContactList = (req, res, next) => {
-  Contact.find((err, contactList) => {
+module.exports.displaySurveyList = (req, res, next) => {
+  Survey.find((err, surveyList) => {
     if (err) {
       return console.error(err);
     } else {
-      res.render("contact/list", {
-        title: "Contacts",
-        ContactList: contactList,
+      res.render("surveys", {
+        title: "My Surveys",
+        SurveyList: surveyList,
         displayName: req.user ? req.user.displayName : "",
       });
     }
-  }).sort({ contactName: 1 });
+  });
 };
 
 module.exports.displayCreateSurveyPage = (req, res, next) => {
@@ -35,22 +36,13 @@ module.exports.displayCreateSurveyPage = (req, res, next) => {
   });
 };
 
-module.exports.displayCreateMCQsurveyPage = (req, res, next) => {
-  res.render('createMCQ', {title: 'Create Multiple-choice Survey', displayName: req.user ? req.user.displayName : ''});
-}
-
-module.exports.displayMySurveysPage = (req, res, next) => {
-  res.render("mySurveys", {
-    title: "My Surveys",
-  });
-};
-
-module.exports.displayAddPage = (req, res, next) => {
-  res.render("contact/add", {
-    title: "Add Contact",
+module.exports.displayCreateMCQSurveyPage = (req, res, next) => {
+  res.render("createMCQ", {
+    title: "Create Multiple-choice Survey",
     displayName: req.user ? req.user.displayName : "",
   });
 };
+
 
 module.exports.processAddPage = (req, res, next) => {
   let newContact = Contact({
@@ -65,7 +57,7 @@ module.exports.processAddPage = (req, res, next) => {
       res.end(err);
     } else {
       // refresh the business contact list
-      res.redirect("/contact-list");
+      res.redirect("/surveys");
     }
   });
 };
@@ -104,7 +96,7 @@ module.exports.processUpdatePage = (req, res, next) => {
       res.end(err);
     } else {
       // refresh the contact list
-      res.redirect("/contact-list");
+      res.redirect("/surveys");
     }
   });
 };
@@ -118,7 +110,7 @@ module.exports.performDelete = (req, res, next) => {
       res.end(err);
     } else {
       // refresh the contact list
-      res.redirect("/contact-list");
+      res.redirect("/surveys");
     }
   });
 };

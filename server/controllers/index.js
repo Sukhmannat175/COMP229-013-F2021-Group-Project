@@ -15,50 +15,22 @@ let passport = require("passport");
 // create the Model instances
 let userModel = require("../models/user");
 let User = userModel.User; // alias
-let mcSurveyQuestionModel = require("../models/mcSurveyQuestion");
-let tfSurveyQuestionModel = require("../models/tfSurveyQuestion");
-let saSurveyQuestionModel = require("../models/saSurveyQuestion");
-let MCSurveyQuestion = mcSurveyQuestionModel.MCSurveyQuestion;
-let TFSurveyQuestion = tfSurveyQuestionModel.TFSurveyQuestion;
-let SASurveyQuestion = saSurveyQuestionModel.SASurveyQuestion;
-let MCSurveyList;
-let TFSurveyList;
-let SASurveyList;
+let surveyModel = require("../models/survey");
+let Survey = surveyModel.Survey;
 
 // logic
 module.exports.displayHomePage = (req, res, next) => {
-  // retrieve MCSurveys
-  MCSurveyQuestion.find((err, mcSurveyList) => {
+  Survey.find((err, surveyList) => {
     if (err) {
       return console.error(err);
     } else {
-      MCSurveyList = mcSurveyList;
+      res.render("surveys", {
+        title: "My Surveys",
+        SurveyList: surveyList,
+        displayName: req.user ? req.user.displayName : "",
+      });
     }
   });
-  // retrieve TFSurveys
-  TFSurveyQuestion.find((err, tfSurveyList) => {
-    if (err) {
-      return console.error(err);
-    } else {
-      TFSurveyList = tfSurveyList;
-    }
-  });
-  // retrieve SASurveys
-  SASurveyQuestion.find((err, saSurveyList) => {
-    if (err) {
-      return console.error(err);
-    } else {
-      SASurveyList = saSurveyList;
-    }
-  });
-  // render home page
-  res.render("home", {
-    title: "Home", 
-    MCSurveyList: MCSurveyList,
-    TFSurveyList: TFSurveyList,
-    SASurveyList: SASurveyList
-})
-  
 };
 
 module.exports.displayLoginPage = (req, res, next) => {
@@ -90,7 +62,7 @@ module.exports.processLoginPage = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return res.redirect("/contact-list");
+      return res.redirect("/surveys");
     });
   })(req, res, next);
 };
@@ -138,7 +110,7 @@ module.exports.processRegisterPage = (req, res, next) => {
       // redirect the user and authenticate them
 
       return passport.authenticate("local")(req, res, () => {
-        res.redirect("/contact-list");
+        res.redirect("/surveys");
       });
     }
   });

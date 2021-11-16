@@ -1,6 +1,6 @@
 /*  COMP229-013 F2021
     Group Project Part 2 First Release
-    File Name:  models/mcSurveyQuestion.js
+    File Name:  models/survey.js
     Student#:   
     Name:       
     Date:       
@@ -11,15 +11,14 @@ let mongoose = require("mongoose");
 let passportLocalMongoose = require("passport-local-mongoose");
 
 // create a model class
-let MCSurveyQuestion = mongoose.Schema(
+let Survey = mongoose.Schema(
   {
     Title: String,
-    DueDate: Date,
+    DueDate: String,
     Description: String,
-    Questions: [ { type: String } ]
   },
   {
-    collection: "mc_survey_questions",
+    collection: "surveys",
   }
 );
 
@@ -28,4 +27,4 @@ let options = { missingPasswordError: "Wrong / Missing Password" };
 User.plugin(passportLocalMongoose, options);
 
 // store model in module.exports container
-module.exports.MCSurveyQuestion = mongoose.model("MCSurveyQuestion", MCSurveyQuestion);
+module.exports.Survey = mongoose.model("Survey", Survey);

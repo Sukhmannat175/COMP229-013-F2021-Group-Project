@@ -24,8 +24,14 @@ function requireAuth(req, res, next) {
     next(); // goes to next call
 }
 
-// GET Route for the Business Contact List page - READ operation
-router.get("/", surveysController.displayContactList);
+// GET Route for the Survey List page - READ operation
+router.get("/", surveysController.displaySurveyList);
+
+// GET Route for the Create Survey page - READ operation
+router.get("/createSurvey", surveysController.displayCreateSurveyPage);
+
+// GET Route for the Create MCQ Survey page - READ operation
+router.get("/createMCQ", surveysController.displayCreateMCQSurveyPage);
 
 /* GET Route for displaying Add page - CREATE operation */
 router.get("/add", surveysController.displayAddPage);
