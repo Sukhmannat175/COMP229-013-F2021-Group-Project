@@ -49,18 +49,18 @@ module.exports.displayTFSurveyPage = (req, res, next) => {
 
 module.exports.processCreateSurveyPage = (req, res, next) => {
   let newSurvey = Survey({
-    "Title": req.body.title,
-    "DueDate": req.body.duedate,
-    "Description": req.body.description
+    Title: req.body.title,
+    DueDate: req.body.duedate,
+    Description: req.body.description,
   });
 
   Survey.create(newSurvey, (err, survey) => {
     if (err) {
-        console.log(err);
-        res.end(err);
+      console.log(err);
+      res.end(err);
     } else {
-        res.redirect('/')
-        //res.redirect('/survey/addtfquestion');
+      res.redirect("/");
+      //res.redirect('/survey/addtfquestion');
     }
   });
 };
@@ -76,43 +76,39 @@ module.exports.displayUpdateSurveyPage = (req, res, next) => {
   let id = req.params.id;
 
   Survey.findById(id, (err, surveyToEdit) => {
-      if (err) 
-      {
-          console.log(err);
-          res.end(err);
-      } 
-      else 
-      {
-          //show the update view
-          res.render('surveyAdmin/updateSurvey',
-          {title: 'Edit Survey', survey: surveyToEdit})
-      }
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      //show the update view
+      res.render("surveyAdmin/updateSurvey", {
+        title: "Edit Survey",
+        survey: surveyToEdit,
+      });
+    }
   });
-} 
+};
 
 module.exports.processUpdateSurveyPage = (req, res, next) => {
   let id = req.params.id;
 
-    let updatedSurvey = Survey({
-        "_id": id,
-        "Title": req.body.title,
-        "DueDate": req.body.duedate,
-        "Description": req.body.description
-    });
+  let updatedSurvey = Survey({
+    _id: id,
+    Title: req.body.title,
+    DueDate: req.body.duedate,
+    Description: req.body.description,
+  });
 
-    Survey.updateOne({_id: id}, updatedSurvey, (err) => {
-        if (err) 
-        {
-            console.log(err);
-            res.end(err);
-        } 
-        else 
-        {
-            // refresh the book list
-            res.redirect('/');
-        }
-    });
-}
+  Survey.updateOne({ _id: id }, updatedSurvey, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      // refresh the book list
+      res.redirect("/");
+    }
+  });
+};
 
 module.exports.performDelete = (req, res, next) => {
   let id = req.params.id;
@@ -125,5 +121,11 @@ module.exports.performDelete = (req, res, next) => {
       // refresh the contact list
       res.redirect("/surveys");
     }
+  });
+};
+
+module.exports.displayShowResultSurveyPage = (req, res, next) => {
+  res.render("surveyAdmin/showResult", {
+    title: "Result",
   });
 };

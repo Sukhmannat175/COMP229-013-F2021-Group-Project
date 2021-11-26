@@ -33,4 +33,13 @@ router.post("/register", indexController.processRegisterPage);
 /* GET to perform User Logout*/
 router.get("/logout", indexController.performLogout);
 
+/* GET Route for displaying Edit Profile page*/
+router.get("/edit-profile/:id", indexController.displayEditProfilePage);
+
+/* POST Route for processing Edit Profile page*/
+router.post("/edit-profile/:id", indexController.processEditProfilePage);
+
+/* GET Route for displaying Profile Details page*/
+router.get("/profile", indexController.displayProfilePage);
+
 module.exports = router;

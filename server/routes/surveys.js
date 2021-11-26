@@ -48,4 +48,7 @@ router.post("/updateSurvey/:id", surveysController.processUpdateSurveyPage);
 /* GET to perform Deletion - DELETE operation */
 router.get("/delete/:id", surveysController.performDelete);
 
+/* GET Route for displaying show result page */
+router.get("/showResult/:id", surveysController.displayShowResultSurveyPage);
+
 module.exports = router;

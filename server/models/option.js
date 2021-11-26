@@ -13,7 +13,7 @@ let mongoose = require("mongoose");
 let Option = mongoose.Schema(
   {
     title: String,
-    questionId: mongoose.Schema.Types.ObjectId
+    questionId: mongoose.Schema.Types.ObjectId,
   },
   {
     collection: "options",

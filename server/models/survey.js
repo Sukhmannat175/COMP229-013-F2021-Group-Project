@@ -13,10 +13,9 @@ let mongoose = require("mongoose");
 let Survey = mongoose.Schema(
   {
     title: String,
-    dueDate: Date,
     description: String,
-    expirationDate: Date,
-    userId: mongoose.Schema.Types.ObjectId
+    expirationDate: String,
+    userId: mongoose.Schema.Types.ObjectId,
   },
   {
     collection: "surveys",

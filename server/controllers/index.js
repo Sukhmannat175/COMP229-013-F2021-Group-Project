@@ -26,11 +26,75 @@ module.exports.displayHomePage = (req, res, next) => {
       res.render("home", {
         title: "Home",
         SurveyList: surveyList,
-        //displayName: req.user ? req.user.displayName : "",
+        displayName: req.user ? req.user.displayName : "",
       });
     }
   });
 };
+
+module.exports.displayProfilePage = (req, res, next) => {
+  let id = req.user.id;
+
+  User.findById(id, (err, profileToEdit) => {
+      if (err) 
+      {
+          console.log(err);
+          res.end(err);
+      } 
+      else 
+      {
+          //show the update view
+          res.render('auth/profile',
+          {title: 'Profile', profile: profileToEdit,
+          displayName: req.user ? req.user.displayName : "",})     
+      }
+  });
+} 
+
+module.exports.displayEditProfilePage = (req, res, next) => {
+  let id = req.user.id;
+
+  User.findById(id, (err, profileToEdit) => {
+      if (err) 
+      {
+          console.log(err);
+          res.end(err);
+      } 
+      else 
+      {
+          //show the update view
+          res.render('auth/editProfile',
+          {title: 'Profile', profile: profileToEdit,
+          displayName: req.user ? req.user.displayName : "",})
+      }
+  });
+} 
+
+module.exports.processEditProfilePage = (req, res, next) => {
+  let id = req.params.id
+
+    let updatedProfile = User({
+        "_id": id,
+        "username": req.body.username,
+        "email": req.body.email,
+        "displayName": req.body.displayName
+    });
+
+    User.updateOne({_id: id}, updatedProfile, (err) => {
+        if (err) 
+        {
+            console.log(err);
+            res.end(err);
+        } 
+        else 
+        {
+            //res.redirect('/');
+            return passport.authenticate("local")(req, res, () => {
+              res.redirect("/");
+            });
+        }
+    });
+}
 
 module.exports.displayLoginPage = (req, res, next) => {
   // check if the user is already logged in

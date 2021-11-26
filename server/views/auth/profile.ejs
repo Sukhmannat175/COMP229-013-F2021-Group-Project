@@ -1,0 +1,85 @@
+<!--COMP229-013 F2021
+    Group Project Part 2 First Release - Smart Survey
+    File Name:   server/views/auth/register.ejs
+    Student#:    301147411, 301182173, 301163120, 301168420, 301182196, 301159644 
+    Name:        Marcus Ngooi, Tatsiana Ptushko, Josef Signo, Sukhmannat Singh, Yuko Yamano, Agustin Ignacio Zuluaga
+    Description: Template for registration page
+  -->
+
+<!-- Partials-->
+<%- include ../partials/header.ejs %> <%- include ../partials/main_nav.ejs %>
+<%- include ../partials/content.ejs %>
+
+<!-- Content for Register Page -->
+<main class="container">
+
+  <div class="row">
+    <div class="offset-md-4 col-md-4">
+      <form method="POST" autocomplete="off">
+        <fieldset class="form-group">
+          <label for="username">Username: </label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            id="username"
+            value="<%= profile.username %>"
+            readonly="readonly"
+            autofocus
+          />
+        </fieldset>
+<!-- 
+        <fieldset class="form-group">
+          <label for="password">Password: </label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="Enter password"
+            id="password"
+            value="<%= profile.password %>"
+            readonly="readonly"
+          />
+        </fieldset> -->
+
+        <fieldset class="form-group">
+          <label for="email">Email: </label>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            placeholder="Enter Email Address"
+            id="email"
+            value="<%= profile.email %>"
+            readonly="readonly"
+          />
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="displayName">Display Name: </label>
+          <input
+            type="text"
+            class="form-control"
+            name="displayName"
+            placeholder="Enter Display Name"
+            id="displayName"
+            value="<%= profile.displayName %>"
+            readonly="readonly"
+          />
+        </fieldset>
+
+        <fieldset class="form-group text-right">
+          <a href="/edit-profile/<%= profile._id %>">
+          <input type="button" class="btn btn-success" value="Edit Profile" />
+          </a>
+          <a href="/">
+            <input type="button" class="btn btn-warning" value="Cancel"/>
+          </a>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- Partials -->
+<%- include ../partials/bottom_nav.ejs %> <%- include ../partials/footer.ejs %>

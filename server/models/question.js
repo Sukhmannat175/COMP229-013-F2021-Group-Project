@@ -13,7 +13,7 @@ let mongoose = require("mongoose");
 let Question = mongoose.Schema(
   {
     title: String,
-    surveyId: mongoose.Schema.Types.ObjectId
+    surveyId: mongoose.Schema.Types.ObjectId,
   },
   {
     collection: "questions",
