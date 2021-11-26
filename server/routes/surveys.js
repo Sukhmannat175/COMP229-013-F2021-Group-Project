@@ -51,4 +51,10 @@ router.get("/delete/:id", surveysController.performDelete);
 /* GET Route for displaying show result page */
 router.get("/showResult/:id", surveysController.displayShowResultSurveyPage);
 
+/* GET Route for the respond Survey page */
+router.get("/respondSurvey/:id/:index", surveysController.displayRespondSurveyPage);
+
+/* POST Route for the respond Survey page */
+//router.post("/respondSurvey/:id/:index", surveysController.processRespondSurveyPage);
+
 module.exports = router;

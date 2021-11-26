@@ -1,0 +1,60 @@
+<!--COMP229-013 F2021
+    Group Project Part 2 Second Release - Smart Survey
+    File Name:   server/views/surveyAdmin/respondSurvey.ejs
+    Student#:    301147411, 301182173, 301163120, 301168420, 301182196, 301159644 
+    Name:        Marcus Ngooi, Tatsiana Ptushko, Josef Signo, Sukhmannat Singh, Yuko Yamano, Agustin Ignacio Zuluaga
+    Description: Page for displaying an active survey from Database
+  -->
+
+<!-- Partials -->
+<!-- Partials -->
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %> 
+<%- include ../partials/content.ejs %>
+
+<!-- Page Content -->
+<div class="container">
+ <!--  <h1>"< %= Survey.title %>"</h1>  
+        <form class="form" method="post">
+                <div class="form-group">
+                    <label for="title"></label>
+                    <input type="text" class=" col-md-3"
+                        id="title"
+                        name="title" 
+                        value = ""
+                        required>
+                </div>
+-->     
+        <br/>
+        <br/>   
+    <div class="row">
+       <form class="form" method="post">
+         <div class="form-group">
+            <%= QuestionList[NewIndex-1].title %></h5>
+          <% for(let count = 0; count <OptionList.length; count++) { %>
+            <h6> <input name="option" type="radio" value="<%= OptionList[count]._id %>" required="required"> &nbsp; <%= OptionList[count].title %></h6>
+          <% } %> 
+
+          <!--buttons-->
+            <% if(NewIndex >= QuestionList.length){ %>
+            
+            <a href="/surveys/respondSurvey/<%= SurveyId%>/<%=NewIndex%> " class="btn btn-primary"  type="submit"> Finish</a> 
+            <% } else{ %>
+              <a href="/surveys/respondSurvey/<%= SurveyId%>/<%=NewIndex%> " class="btn btn-primary" type="submit"> Next</a>
+            <% } %>  
+         </div>
+        </form> 
+    </div>
+  
+
+</div>
+
+<!-- Account for Fixed Bottom -->
+<br />
+<br />
+<br />
+<br />
+
+<!-- Partials -->
+<%- include ../partials/bottom_nav.ejs %>
+ <%- include ../partials/footer.ejs %>

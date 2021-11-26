@@ -13,6 +13,10 @@ let mongoose = require("mongoose");
 
 // create a reference to the model
 let Survey = require("../models/survey");
+let Question = require("../models/question");
+let Option = require("../models/option");
+let Response = require("../models/surveyResponse");
+let Answer = require("../models/answer");
 
 // logic
 module.exports.displaySurveyList = (req, res, next) => {
@@ -136,3 +140,97 @@ module.exports.displayShowResultSurveyPage = (req, res, next) => {
     title: "Result",
   });
 };
+
+module.exports.displayRespondSurveyPage = (req, res, next) => {
+  let surveyId = req.params.id;
+  let Index = req.params.index;
+  let newIndex = parseInt(Index, 10) + 1;
+  let optionId;
+
+  // for (let count = 0; count < req.OptionList.length; count++) {
+  //   if (req.OptionList[count].checked) {
+  //     optionId = req.OptionList[count]._id;
+  //   }
+  // }
+
+  let newResponse = Response({
+    dateAnswered: new Date().toUTCString(),
+    surveyId: surveyId,
+  });
+  if (Index == 1) {
+    Response.create(newResponse, (err, Response) => {
+      if (err) {
+        console.log(err);
+        res.end(err);
+      }
+    });
+  }
+
+  Question.find({ surveyId: surveyId }).exec((err, questionList) => {
+    if (err) {
+      return console.error(err);
+    } else {
+      if (parseInt(Index, 10) >= 1) {
+        let newAnswer = Answer({
+          questionId: questionList[Index - 1].id,
+          optionId: optionId,
+          surveyResponseId: surveyId,
+        });
+        Answer.create(newAnswer, (err, Answer) => {
+          if (err) {
+            console.log(err);
+            res.end(err);
+          }
+        });
+      }
+      if (parseInt(Index, 10) == questionList.length) {
+        res.redirect("/");
+      } else {
+        let questId = questionList[Index]._id;
+        Option.find({ questionId: questId }).exec((err, optionList) => {
+          if (err) {
+            return console.error(err);
+          } else {
+            res.render("surveyAdmin/respondSurvey", {
+              title: "Answer the Questions of the Survey",
+              SurveyId: surveyId,
+              QuestionList: questionList,
+              NewIndex: newIndex,
+              OptionList: optionList,
+              displayName: req.user ? req.user.displayName : "",
+            });
+          }
+        });
+      }
+    }
+  });
+};
+
+// module.exports.processRespondSurveyPage = (req, res, next) => {
+//   let surveyId = req.params.id;
+//   let Index = req.params.index;
+//   let optionId = req.body.option;
+
+//   Question.find({ surveyId: surveyId }).exec((err, questionList) => {
+//     if (err) {
+//       return console.error(err);
+//     } else {
+//       if (parseInt(Index, 10) >= 0) {
+//         console.log("This works");
+//         let newAnswer = Answer({
+//           questionId: questionList[Index].id,
+//           optionId: optionId,
+//           surveyResponseId: surveyId,
+//         });
+//         Answer.create(newAnswer, (err, Answer) => {
+//           if (err) {
+//             console.log(err);
+//             res.end(err);
+//           } else {
+//             res.redirect("/surveys/respondSurvey/" + surveyId + "/" + parseInt(Index + 1, 10));
+//           }
+//         });
+//       }
+//     }
+//   });
+// };

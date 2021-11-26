@@ -17,3 +17,8 @@ h1{
     margin: 0px;
     padding: 0px;
 }
+
+.btn.btn-info{
+    min-width: 160px;
+    box-shadow: 5px 5px 3px grey;
+ }

@@ -28,9 +28,17 @@ include partials/content.ejs %>
           </thead>
           <tbody>
             <!--The body of the table-->
-            <% for(let count = 0; count < SurveyList.length; count++) { %>
             <tr>
-              <td class="text-center col-2"><%= SurveyList[count].title %></td>
+              <% for(let count = 0; count < SurveyList.length; count++) { %>
+              <td class="text-center col-2">
+                <a
+                  href="surveys/respondSurvey/<%= SurveyList[count]._id %>/<%= 0%>"
+                  class="btn btn-info"
+                  role="button"
+                >
+                  <%= SurveyList[count].title %></a
+                >
+              </td>
               <td class="text-center col-4">
                 <%= SurveyList[count].description %>
               </td>

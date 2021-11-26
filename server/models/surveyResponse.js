@@ -13,7 +13,6 @@ let mongoose = require("mongoose");
 let SurveyResponse = mongoose.Schema(
   {
     dateAnswered: String,
-    userId: mongoose.Schema.Types.ObjectId,
     surveyId: mongoose.Schema.Types.ObjectId,
   },
   {
