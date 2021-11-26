@@ -45,21 +45,21 @@
               <% } %>
           </li>
           
-          <% if(typeof displayName == "string" && displayName) { %>
-            <li class="navbar-text">
-              <a href="/profile" class="nav-link"><i class="fas fa-lg fa-user"></i> Welcome, <%= displayName %></a>
-            </li>
-            <li class="nav-item">
+          <li class="navbar-text"></li>
+            <% if(typeof displayName == "string" && displayName) { %>
+              <a href="/profile" class="nav-link"><i class="fas fa-user"></i> Welcome, <%= displayName %></a>
+          </li>
+          <li class="nav-item">
               <a href="/logout" class="nav-link"
                 ><i class="fas fa-lg fa-sign-out-alt"></i> Logout</a
               >
-            </li>
+          </li>
             <% } else { %>
-            <li clas="nav-item">
+          <li clas="nav-item">
               <a href="/login" class="nav-link"
                 ><i class="fas fa-lg fa-sign-in-alt"></i> Login</a
               >
-            </li>
+          </li>
             <% } %>
         </ul>
       </div>

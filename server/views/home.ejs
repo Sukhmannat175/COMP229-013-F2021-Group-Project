@@ -22,7 +22,7 @@ include partials/content.ejs %>
             <tr>
               <th class="text-center col-2">Title</th>
               <th class="text-center col-4">Description</th>
-              <th class="text-center col-2">Due Date</th>
+              <th class="text-center col-2">Expiration Date</th>
               <th class="text-center col-2">Survey status</th>
             </tr>
           </thead>
@@ -30,15 +30,15 @@ include partials/content.ejs %>
             <!--The body of the table-->
             <% for(let count = 0; count < SurveyList.length; count++) { %>
             <tr>
-              <td class="text-center col-2"><%= SurveyList[count].Title %></td>
+              <td class="text-center col-2"><%= SurveyList[count].title %></td>
               <td class="text-center col-4">
-                <%= SurveyList[count].Description %>
+                <%= SurveyList[count].description %>
               </td>
               <td class="text-center col-2">
-                <%= SurveyList[count].DueDate %>
+                <%= SurveyList[count].expirationDate %>
               </td>
               <td class="text-center col-2">
-                <%= SurveyList[count].SurveyStatus %>
+                <%= SurveyList[count].surveyStatus %>
               </td>
             </tr>
             <% } %>

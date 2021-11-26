@@ -23,7 +23,7 @@ include ../partials/content.ejs %>
             <tr>
               <th class="text-center">Title</th>
               <th class="text-center">Description</th>
-              <th class="text-center">Due Date</th>
+              <th class="text-center">Expiration Date</th>
               <th class="text-center">Update</th>
               <th class="text-center">Delete</th>
                <th class="text-center">Show Result</th>
@@ -33,12 +33,12 @@ include ../partials/content.ejs %>
           <!--The body of the table-->
           <% for(let count = 0; count < SurveyList.length; count++) { %>
             <tr>
-              <td class="text-center col-2"><%= SurveyList[count].Title %></td>
+              <td class="text-center col-2"><%= SurveyList[count].title %></td>
               <td class="text-center col-4">
-                <%= SurveyList[count].Description %>
+                <%= SurveyList[count].description %>
               </td>
               <td class="text-center col-2">
-                <%= SurveyList[count].DueDate %>
+                <%= SurveyList[count].expirationDate %>
               </td>
               <td class="text-center">      
                 <a href="/surveys/updateSurvey/<%= SurveyList[count]._id %>" class="btn btn-warning">

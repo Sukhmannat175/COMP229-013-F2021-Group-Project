@@ -16,7 +16,9 @@ let Survey = require("../models/survey");
 
 // logic
 module.exports.displaySurveyList = (req, res, next) => {
-  Survey.find((err, surveyList) => {
+  let id = req.user._id;
+
+  Survey.find({ userId: id }, (err, surveyList) => {
     if (err) {
       return console.error(err);
     } else {
@@ -32,26 +34,30 @@ module.exports.displaySurveyList = (req, res, next) => {
 module.exports.displayCreateSurveyPage = (req, res, next) => {
   res.render("surveyAdmin/createSurvey", {
     title: "Create Survey",
+    displayName: req.user ? req.user.displayName : "",
   });
 };
 
 module.exports.displayMCQSurveyPage = (req, res, next) => {
   res.render("surveyAdmin/createSurvey", {
     title: "Create MCQ Survey",
+    displayName: req.user ? req.user.displayName : "",
   });
 };
 
 module.exports.displayTFSurveyPage = (req, res, next) => {
   res.render("surveyAdmin/createSurvey", {
     title: "Create T/F Survey",
+    displayName: req.user ? req.user.displayName : "",
   });
 };
 
 module.exports.processCreateSurveyPage = (req, res, next) => {
   let newSurvey = Survey({
-    Title: req.body.title,
-    DueDate: req.body.duedate,
-    Description: req.body.description,
+    title: req.body.title,
+    description: req.body.description,
+    expirationDate: req.body.expirationDate,
+    userId: req.user._id,
   });
 
   Survey.create(newSurvey, (err, survey) => {
@@ -94,9 +100,10 @@ module.exports.processUpdateSurveyPage = (req, res, next) => {
 
   let updatedSurvey = Survey({
     _id: id,
-    Title: req.body.title,
-    DueDate: req.body.duedate,
-    Description: req.body.description,
+    title: req.body.title,
+    description: req.body.description,
+    expiractionDate: req.body.duedate,
+    userId: req.user._id,
   });
 
   Survey.updateOne({ _id: id }, updatedSurvey, (err) => {
