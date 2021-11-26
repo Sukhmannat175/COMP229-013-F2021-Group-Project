@@ -12,7 +12,8 @@ let mongoose = require("mongoose");
 // create a model class
 let Option = mongoose.Schema(
   {
-    Title: String,
+    title: String,
+    questionId: mongoose.Schema.Types.ObjectId
   },
   {
     collection: "options",

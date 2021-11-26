@@ -8,5 +8,5 @@
 
 // specify URI for database
 module.exports = {
-  URI: "mongodb+srv://inaki:hUCwKaOjDcvcBwgc@cluster0.8jw3g.mongodb.net/surveyDBs?retryWrites=true&w=majority",
+  URI: "mongodb+srv://inaki:hUCwKaOjDcvcBwgc@cluster0.8jw3g.mongodb.net/surveySiteDB?retryWrites=true&w=majority",
 };

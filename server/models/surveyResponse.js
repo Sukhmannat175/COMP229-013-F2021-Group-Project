@@ -12,7 +12,9 @@ let mongoose = require("mongoose");
 // create a model class
 let SurveyResponse = mongoose.Schema(
   {
-    DateAnswered: Date
+    dateAnswered: Date,
+    userId: mongoose.Schema.Types.ObjectId,
+    surveyId: mongoose.Schema.Types.ObjectId
   },
   {
     collection: "surveyResponses",
