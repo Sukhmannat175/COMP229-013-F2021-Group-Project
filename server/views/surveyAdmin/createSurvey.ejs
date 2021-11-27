@@ -12,70 +12,8 @@
 <%- include ../partials/content.ejs %>
 
 <!-- Page Content -->
-<div class="container offset-md-3">
-  <p>
-    
-  </p>
+<div class="container offset-md-4">  
   <%- include ../partials/template.ejs %>
-  <form method="POST" autocomplete="off">
-    <div class="row">
-      <div class="col-sm-3 mb-2">
-        <label for="title">Survey Title: </label>
-          <input type="text"
-          class="form-control"
-          name="title"
-          id="title"
-          placeholder="Enter Survey Title"
-          required>
-        </div>
-
-        <div class="col-sm-3">
-          <label for="title">Expiration Date: </label>
-          <input type="date"
-          class="form-control"
-          name="expirationDate"
-          id="expirationDate"
-          required>
-        </div>
-      
-      <div class="col-md-7 mb-4">
-        <label for="description">Description: </label>
-        <textarea class="form-control" name="description" id="description" placeholder="Enter Description"></textarea>
-      </div>
-      
-      <!-- <%// for (let count = 0; count < questions.length; count++) { %>
-        <div class="col-md-5">
-          <label for="question <% //+ count %>">Question: </label>
-          <input type="text"
-          class="form-control"
-          name="question"
-          id="question"
-          value="<%// questions[count] %>"
-          required>
-        </div>
-
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="option" id="true" value="true">
-          <label class="form-check-label" for="option">
-            True
-          </label>
-        </div>
-        
-        <div class="form-check mb-3">
-          <input class="form-check-input" type="radio" name="option" id="false" value="false">
-          <label class="form-check-label" for="option">
-            False
-          </label>
-        </div>
-      <%// } %>      
-      <input type="submit" class="btn btn-warning col-md-3 mb-5 offset-md-1" value="Add Question">       -->
-    </div>
-
-    <input class="btn btn-success" type="submit" value="Publish">
-    <a href="/">
-      <input class="btn btn-warning" type="button" value="Cancel">
-    </a>
-  </form>
 </div>
 
 <!-- Account for Fixed Bottom -->

@@ -7,16 +7,253 @@
   -->
 
 <!-- Partials -->
-<%- ../include partials/header.ejs %> 
-<%- ../include partials/main_nav.ejs %>
-<%- ../include partials/content.ejs %>
+<%- include ../partials/header.ejs %> 
+<%- include ../partials/main_nav.ejs %>
+<%- include ../partials/content.ejs %>
 
 <!-- Page Content -->
 <div class="container">
+  <div class="container offset-md-3">  
+    <form method="POST" name="questionsForm" autocomplete="off">
+      <div class="row">
+        <div class="col-md-3 mb-2">
+          <label for="title">Survey title: </label>
+            <input type="text"
+            class="form-control"
+            name="title"
+            id="title"
+            <% if (title == "MCQ Survey") { %>
+            placeholder="Enter Survey title"
+            required
+            <% } else { %>
+            value = "<%= Survey.title %>"
+            readonly = "readonly"
+            <% } %>>
+        </div>
 
-<%- ../include partials/template.ejs %>
-  
-  
+        <div class="col-md-3">
+          <label for="title">Due Date: </label>
+          <input type="date"
+          class="form-control"
+          name="duedate"
+          id="duedate"
+          <% if (title == "MCQ Survey") { %>
+          required
+          <% } else { %>
+          value = "<%= Survey.expirationDate %>"
+          readonly = "readonly"
+          <% } %>>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-7 mb-4">
+          <label for="description">description: </label>
+          <textarea 
+            class="form-control" 
+            name="description"
+            id="description"
+            <% if (title == "MCQ Survey") { %>
+            placeholder="Enter description"
+            <% } else { %>
+            placeholder = "<%= Survey.description %>"
+            readonly = "readonly"
+            <% } %>></textarea>
+        </div>
+      </div>
+
+      <% if (title == "Creating Survey...") { %>
+        <% for (let count = 0; count < QuestionList.length; count++) { %>
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label for="question">Question <%= count + 1 %>: </label>
+              <input type="text"
+              class="form-control"
+              name="question<%= count + 1 %>"
+              id="question<%= count + 1%>"
+              value="<%= QuestionList[count].title %>"
+              readonly = "readonly">
+            </div>
+          </div>
+          <% for (let num = (count+1)*4; num >= (count+1)*4 && num < ((count+1)*4)+4; num++) { %>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="option" id="option">
+              <label class="form-check-label" for="option<%= count %>">
+                <input type="text"
+                class="form-control mb-2"
+                name="option<%= count %>"
+                id="option<%= count %>"
+                value="<%= OptionList[num-4].title %>"
+                readonly="readonly">
+              </label>
+            </div>
+          <% } %>
+        <% } %>
+
+      <% } else if (title == "Creating Question...") { %>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <label for="newquestion">New Question: </label>
+            <input type="text"
+            class="form-control"
+            name="newquestion"
+            id="newquestion"
+            value=""
+            required>
+          </div>        
+          <input type="hidden" value="<%= Survey._id %>" name="surveyid" id="surveyid">
+          <div class="row">
+            <input class="btn btn-success col-md-2 offset-md-1" type="submit" value="Add Options">
+            <a href="/surveys/cancelMCQQuestion/<%= Question._id %>">
+              <input class="btn btn-warning offset-md-6" type="button" value="Cancel">
+            </a>
+          </div>
+        </div>
+        <% for (let count = 1; count < QuestionList.length; count++) { %>
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label for="question">Question <%= count %>: </label>
+              <input type="text"
+              class="form-control"
+              name="question<%= count %>"
+              id="question<%= count %>"
+              value="<%= QuestionList[count - 1].title %>"
+              readonly = "readonly">
+            </div>
+          </div>
+          <% for (let num = count*4; num >= count*4 && num < (count*4)+4; num++) { %>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="option" id="option">
+              <label class="form-check-label" for="option<%= count %>">
+                <input type="text"
+                class="form-control mb-2"
+                name="option<%= count %>"
+                id="option<%= count %>"
+                value="<%= OptionList[num-4].title %>"
+                readonly="readonly">
+              </label>
+            </div>
+          <% } %>
+        <% } %>
+          
+
+      <% } else if (title == "Adding Options...") { %>
+        
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <label for="question">Question <%= QuestionList.length %>: </label>
+            <input type="text"
+            class="form-control"
+            name="question<%= QuestionList.length %>"
+            id="question<%= QuestionList.length %>"
+            value="<%= QuestionList[QuestionList.length - 1].title %>"
+            readonly = "readonly">
+          </div>
+        </div>
+        
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="option" id="option">
+          <label class="form-check-label" for="option1">
+            <input type="text"
+            class="form-control mb-2"
+            name="option1"
+            id="option1"
+            value=""
+            required>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="option" id="option">
+          <label class="form-check-label" for="option2">
+            <input type="text"
+            class="form-control mb-2"
+            name="option2"
+            id="option2"
+            value=""
+            required>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="option" id="option">
+          <label class="form-check-label" for="option3">
+            <input type="text"
+            class="form-control mb-2"
+            name="option3"
+            id="option3"
+            value=""
+            required>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="option" id="option">
+          <label class="form-check-label" for="option4">
+            <input type="text"
+            class="form-control mb-2"
+            name="option4"
+            id="option4"
+            value=""
+            required>
+          </label>
+        </div>
+        <input type="hidden" value="<%= Survey._id %>" name="surveyid" id="surveyid">
+        
+        <div class="row">
+          <input class="btn btn-success col-md-2 offset-md-2" type="submit" value="Save Question">
+        </div>
+
+      <% } else if (title == "Finalise Survey") { %>
+        <% for (let count = 0; count < QuestionList.length; count++) { %>
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label for="question">Question <%= count + 1 %>: </label>
+              <input type="text"
+              class="form-control"
+              name="question<%=count + 1%>"
+              id="question<%= count + 1 %>"
+              value="<%= QuestionList[count].title %>"
+              readonly = "readonly">
+            </div>
+          
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="newoption" id="newquestion">
+              <label class="form-check-label" for="newoption">
+                <input type="text"
+                class="form-control mb-2"
+                name="newoption"
+                id="newoption"
+                value=""
+                required>
+              </label>
+            </div>          
+          </div>
+          <% } %>
+      <% } else { %>
+
+      <% } %>
+
+      <% if (title == "MCQ Survey") { %>
+      <div class="row">
+        <input type="submit" class="btn btn-primary col-md-2 mb-3 offset-md-2" value="Proceed to Questions">
+        <a href="/">
+          <input class="btn btn-warning offset-md-6" type="button" value="Cancel">
+        </a>
+      </div>
+      <% } else if (title == "Creating Survey...") { %>
+      <div class="row">
+        <input type="submit" class="btn btn-warning col-md-2 mb-5 offset-md-2" value="Add a Question">
+      </div>
+      <div>  
+        <a href="/">
+          <input class="btn btn-success col-md-1 " type="button" value="Publish">
+        </a>
+        <a href="/surveys/delete/<%= Survey._id %>">
+          <input class="btn btn-warning" type="button" value="Cancel">
+        </a>
+      </div>
+      <% } else { %>
+      <% } %>
+    </form>
+  </div>
 </div>
 
 <!-- Account for Fixed Bottom -->
@@ -26,5 +263,5 @@
 <br />
 
 <!-- Partials -->
-<%- ../include partials/bottom_nav.ejs %>
-<%- ../include partials/footer.ejs %>
+<%- include ../partials/bottom_nav.ejs %>
+<%- include ../partials/footer.ejs %>

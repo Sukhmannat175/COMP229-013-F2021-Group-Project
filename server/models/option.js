@@ -14,6 +14,7 @@ let Option = mongoose.Schema(
   {
     title: String,
     questionId: mongoose.Schema.Types.ObjectId,
+    surveyId: mongoose.Schema.Types.ObjectId,
   },
   {
     collection: "options",
