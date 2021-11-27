@@ -45,27 +45,28 @@ module.exports.displayCreateSurveyPage = (req, res, next) => {
 module.exports.displayMCQSurveyPage = (req, res, next) => {
   res.render("surveyAdmin/createMCQ", {
     title: "MCQ Survey",
+    displayName: req.user ? req.user.displayName : "",
   });
 };
 
 module.exports.processMCQSurveyPage = (req, res, next) => {
   let newSurvey = Survey({
-    "title": req.body.title,
-    "expirationDate": req.body.duedate,
-    "description": req.body.description,
-    "userId": req.user._id,
+    title: req.body.title,
+    expirationDate: req.body.duedate,
+    description: req.body.description,
+    userId: req.user._id,
   });
 
   Survey.create(newSurvey, (err, survey) => {
     if (err) {
-        console.log(err);
-        res.end(err);
+      console.log(err);
+      res.end(err);
     } else {
-        res.redirect('/surveys/addMCQQuestions/' + survey._id)
-        //res.redirect('/survey/addtfquestion');
+      res.redirect("/surveys/addMCQQuestions/" + survey._id);
+      //res.redirect('/survey/addtfquestion');
     }
   });
-}
+};
 
 module.exports.displayAddMCQQuestions = (req, res, next) => {
   let id = req.params.id;
@@ -74,11 +75,11 @@ module.exports.displayAddMCQQuestions = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      Question.find({surveyId: id}).exec((err, questionList) => {
+      Question.find({ surveyId: id }).exec((err, questionList) => {
         if (err) {
           return console.error(err);
         } else {
-          Option.find({surveyId: survey._id}).exec((err, optionList) => {
+          Option.find({ surveyId: survey._id }).exec((err, optionList) => {
             if (err) {
               return console.error(err);
             } else {
@@ -99,19 +100,19 @@ module.exports.displayAddMCQQuestions = (req, res, next) => {
 
 module.exports.processAddMCQQuestions = (req, res, next) => {
   let id = req.params.id;
-  
-  let newQuestion = Question({    
-    "surveyId": id, 
+
+  let newQuestion = Question({
+    surveyId: id,
   });
 
   Question.create(newQuestion, (err, question) => {
-    if (err){
+    if (err) {
       return console.error(err);
     } else {
-      res.redirect("/surveys/addOneMCQQuestion/" + question._id)
-    };
+      res.redirect("/surveys/addOneMCQQuestion/" + question._id);
+    }
   });
-}
+};
 
 module.exports.displayOneMCQQuestion = (req, res, next) => {
   let id = req.params.id;
@@ -124,11 +125,11 @@ module.exports.displayOneMCQQuestion = (req, res, next) => {
         if (err) {
           return console.error(err);
         } else {
-          Question.find({surveyId: survey._id}).exec((err, questionList) => {
+          Question.find({ surveyId: survey._id }).exec((err, questionList) => {
             if (err) {
               return console.error(err);
             } else {
-              Option.find({surveyId: survey._id}).exec((err, optionList) => {
+              Option.find({ surveyId: survey._id }).exec((err, optionList) => {
                 if (err) {
                   return console.error(err);
                 } else {
@@ -140,7 +141,7 @@ module.exports.displayOneMCQQuestion = (req, res, next) => {
                     QuestionList: questionList,
                     OptionList: optionList,
                     displayName: req.user ? req.user.displayName : "",
-                  })
+                  });
                 }
               });
             }
@@ -149,39 +150,39 @@ module.exports.displayOneMCQQuestion = (req, res, next) => {
       });
     }
   });
-}
+};
 
 module.exports.processOneMCQQuestion = (req, res, next) => {
   let id = req.params.id;
-  
+
   let updatedQuestion = Question({
-    "_id": id,
-    "title": req.body.newquestion,
-    "surveyID": req.body.surveyiD,
+    _id: id,
+    title: req.body.newquestion,
+    surveyID: req.body.surveyiD,
   });
 
-  Question.updateOne({_id: id}, updatedQuestion, (err) => {
-    if (err){
+  Question.updateOne({ _id: id }, updatedQuestion, (err) => {
+    if (err) {
       return console.error(err);
     } else {
       res.redirect("/surveys/addOneMCQQuestion/addOptions/" + id);
     }
   });
-}
+};
 
 module.exports.processCancelMCQQuestion = (req, res, next) => {
   let id = req.params.id;
 
   Question.findById(id, (err, question) => {
-    if (err){
+    if (err) {
       return console.error(err);
     } else {
       Survey.findById(question.surveyId, (err, survey) => {
-        if (err){
+        if (err) {
           return console.error(err);
         } else {
-          Question.remove({_id: id}, (err) => {
-            if (err){
+          Question.remove({ _id: id }, (err) => {
+            if (err) {
               return console.error(err);
             } else {
               res.redirect("/surveys/addMCQQuestions/" + survey._id);
@@ -191,11 +192,11 @@ module.exports.processCancelMCQQuestion = (req, res, next) => {
       });
     }
   });
-}
+};
 
 module.exports.displayAddOptions = (req, res, next) => {
   let id = req.params.id;
-  
+
   Question.findById(id, (err, question) => {
     if (err) {
       return console.error(err);
@@ -204,11 +205,11 @@ module.exports.displayAddOptions = (req, res, next) => {
         if (err) {
           return console.error(err);
         } else {
-          Question.find({surveyId: survey._id}).exec((err, questionList) => {
+          Question.find({ surveyId: survey._id }).exec((err, questionList) => {
             if (err) {
               return console.error(err);
             } else {
-              Option.find({surveyId: survey._id}).exec((err, optionList) => {
+              Option.find({ surveyId: survey._id }).exec((err, optionList) => {
                 if (err) {
                   return console.error(err);
                 } else {
@@ -228,52 +229,52 @@ module.exports.displayAddOptions = (req, res, next) => {
       });
     }
   });
-}
+};
 
 module.exports.processAddOptions = (req, res, next) => {
   let id = req.params.id;
 
-  let option1 = Option({    
-    "title": req.body.option1,
-    "questionId": id,
-    "surveyId": req.body.surveyid,
+  let option1 = Option({
+    title: req.body.option1,
+    questionId: id,
+    surveyId: req.body.surveyid,
   });
 
-  let option2 = Option({    
-    "title": req.body.option2,
-    "questionId": id,
-    "surveyId": req.body.surveyid,
+  let option2 = Option({
+    title: req.body.option2,
+    questionId: id,
+    surveyId: req.body.surveyid,
   });
 
-  let option3 = Option({    
-    "title": req.body.option3,
-    "questionId": id,
-    "surveyId": req.body.surveyid,
+  let option3 = Option({
+    title: req.body.option3,
+    questionId: id,
+    surveyId: req.body.surveyid,
   });
 
-  let option4 = Option({    
-    "title": req.body.option4,
-    "questionId": id,
-    "surveyId": req.body.surveyid,
+  let option4 = Option({
+    title: req.body.option4,
+    questionId: id,
+    surveyId: req.body.surveyid,
   });
 
   Option.create(option1, (err, Option1) => {
-    if (err){
+    if (err) {
       return console.error(err);
     } else {
       Option.create(option2, (err, Option2) => {
-        if (err){
+        if (err) {
           return console.error(err);
         } else {
           Option.create(option3, (err, Option3) => {
-            if (err){
+            if (err) {
               return console.error(err);
             } else {
               Option.create(option4, (err, Option4) => {
-                if (err){
+                if (err) {
                   return console.error(err);
                 } else {
-                  res.redirect("/surveys/addMCQQuestions/" + req.body.surveyid)
+                  res.redirect("/surveys/addMCQQuestions/" + req.body.surveyid);
                 }
               });
             }
@@ -282,7 +283,7 @@ module.exports.processAddOptions = (req, res, next) => {
       });
     }
   });
-}
+};
 
 module.exports.displayTFSurveyPage = (req, res, next) => {
   res.render("surveyAdmin/createSurvey", {
@@ -298,11 +299,11 @@ module.exports.displayUpdateSurveyPage = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      Question.find({surveyId: id}).exec((err, questionList) => {
+      Question.find({ surveyId: id }).exec((err, questionList) => {
         if (err) {
           return console.error(err);
         } else {
-          Option.find({surveyId: survey._id}).exec((err, optionList) => {
+          Option.find({ surveyId: survey._id }).exec((err, optionList) => {
             if (err) {
               return console.error(err);
             } else {
@@ -319,31 +320,28 @@ module.exports.displayUpdateSurveyPage = (req, res, next) => {
       });
     }
   });
-} 
+};
 
 module.exports.processUpdateSurveyPage = (req, res, next) => {
   let id = req.params.id;
 
-    let updatedSurvey = Survey({
-        "_id": id,
-        "title": req.body.title,
-        "expirationDate": req.body.duedate,
-        "description": req.body.description
-    });
+  let updatedSurvey = Survey({
+    _id: id,
+    title: req.body.title,
+    expirationDate: req.body.duedate,
+    description: req.body.description,
+  });
 
-    Survey.updateOne({_id: id}, updatedSurvey, (err) => {
-        if (err) 
-        {
-            console.log(err);
-            res.end(err);
-        } 
-        else 
-        {
-            // refresh the book list
-            res.redirect('/surveys');
-        }
-    });
-}
+  Survey.updateOne({ _id: id }, updatedSurvey, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      // refresh the book list
+      res.redirect("/surveys");
+    }
+  });
+};
 
 module.exports.displayUpdateQuestionPage = (req, res, next) => {
   let id = req.params.id;
@@ -352,13 +350,13 @@ module.exports.displayUpdateQuestionPage = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      console.log(question)
+      console.log(question);
       Survey.findById(question.surveyId, (err, survey) => {
         if (err) {
           return console.error(err);
         } else {
-          console.log(survey)
-          Option.find({questionId: id}).exec((err, optionList) => {
+          console.log(survey);
+          Option.find({ questionId: id }).exec((err, optionList) => {
             if (err) {
               return console.error(err);
             } else {
@@ -375,18 +373,18 @@ module.exports.displayUpdateQuestionPage = (req, res, next) => {
       });
     }
   });
-}
+};
 
 module.exports.processUpdateQuestionPage = (req, res, next) => {
   let id = req.params.id;
 
   let updatedQuestion = Question({
-    "_id": id,
-    "title": req.body.question,
-    "surveyId": req.body.surveyid,
-  })
+    _id: id,
+    title: req.body.question,
+    surveyId: req.body.surveyid,
+  });
 
-  Question.updateOne({_id: id}, updatedQuestion, (err) => {
+  Question.updateOne({ _id: id }, updatedQuestion, (err) => {
     if (err) {
       return console.error(err);
     } else {
@@ -394,69 +392,87 @@ module.exports.processUpdateQuestionPage = (req, res, next) => {
         if (err) {
           return console.error(err);
         } else {
-          console.log(question)
           Survey.findById(question.surveyId, (err, survey) => {
             if (err) {
               return console.error(err);
             } else {
-              console.log(survey)
-              Option.find({questionId: id}).exec((err, optionList) => {
+              console.log(survey);
+              Option.find({ questionId: id }).exec((err, optionList) => {
                 if (err) {
                   return console.error(err);
                 } else {
-                  let option1 = Option({ 
-                    "_id": optionList[0].id,   
-                    "title": req.body.option1,
-                    "questionId": id,
-                    "surveyId": req.body.surveyid,
+                  let option1 = Option({
+                    _id: optionList[0].id,
+                    title: req.body.option1,
+                    questionId: id,
+                    surveyId: req.body.surveyid,
                   });
-                  
+
                   let option2 = Option({
-                    "_id": optionList[1].id,
-                    "title": req.body.option2,
-                    "questionId": id,
-                    "surveyId": req.body.surveyid,
+                    _id: optionList[1].id,
+                    title: req.body.option2,
+                    questionId: id,
+                    surveyId: req.body.surveyid,
                   });
-                
+
                   let option3 = Option({
-                    "_id": optionList[2].id,
-                    "title": req.body.option3,
-                    "questionId": id,
-                    "surveyId": req.body.surveyid,
+                    _id: optionList[2].id,
+                    title: req.body.option3,
+                    questionId: id,
+                    surveyId: req.body.surveyid,
                   });
-                
+
                   let option4 = Option({
-                    "_id": optionList[3].id,
-                    "title": req.body.option4,
-                    "questionId": id,
-                    "surveyId": req.body.surveyid,
+                    _id: optionList[3].id,
+                    title: req.body.option4,
+                    questionId: id,
+                    surveyId: req.body.surveyid,
                   });
-    
-                  Option.updateOne({_id: optionList[0].id}, option1, (err) => {
-                    if (err) {
-                      return console.error(err);
-                    } else {
-                      Option.updateOne({_id: optionList[1].id}, option2, (err) => {
-                        if (err) {
-                          return console.error(err);
-                        } else {
-                          Option.updateOne({_id: optionList[2].id}, option3, (err) => {
+
+                  Option.updateOne(
+                    { _id: optionList[0].id },
+                    option1,
+                    (err) => {
+                      if (err) {
+                        return console.error(err);
+                      } else {
+                        Option.updateOne(
+                          { _id: optionList[1].id },
+                          option2,
+                          (err) => {
                             if (err) {
                               return console.error(err);
                             } else {
-                              Option.updateOne({_id: optionList[3].id}, option4, (err) => {
-                                if (err) {
-                                  return console.error(err);
-                                } else {
-                                  res.redirect('/surveys/updateSurvey/' + survey._id)
+                              Option.updateOne(
+                                { _id: optionList[2].id },
+                                option3,
+                                (err) => {
+                                  if (err) {
+                                    return console.error(err);
+                                  } else {
+                                    Option.updateOne(
+                                      { _id: optionList[3].id },
+                                      option4,
+                                      (err) => {
+                                        if (err) {
+                                          return console.error(err);
+                                        } else {
+                                          res.redirect(
+                                            "/surveys/updateSurvey/" +
+                                              survey._id
+                                          );
+                                        }
+                                      }
+                                    );
+                                  }
                                 }
-                              });
+                              );
                             }
-                          });
-                        }
-                      });
+                          }
+                        );
+                      }
                     }
-                  });
+                  );
                 }
               });
             }
@@ -465,13 +481,13 @@ module.exports.processUpdateQuestionPage = (req, res, next) => {
       });
     }
   });
-}
+};
 
 module.exports.performDelete = (req, res, next) => {
   let id = req.params.id;
-  
-  Option.remove({surveyId: id}, (err) => {
-    Question.remove({surveyId: id}, (err) => {
+
+  Option.remove({ surveyId: id }, (err) => {
+    Question.remove({ surveyId: id }, (err) => {
       Survey.remove({ _id: id }, (err) => {
         if (err) {
           console.log(err);
@@ -480,13 +496,14 @@ module.exports.performDelete = (req, res, next) => {
           res.redirect("/surveys");
         }
       });
-    })
+    });
   });
 };
 
 module.exports.displayShowResultSurveyPage = (req, res, next) => {
   res.render("surveyAdmin/showResult", {
     title: "Result",
+    displayName: req.user ? req.user.displayName : "",
   });
 };
 

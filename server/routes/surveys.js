@@ -34,52 +34,52 @@ router.get("/createSurvey", requireAuth, surveysController.displayCreateSurveyPa
 //router.post("/createSurvey", surveysController.processCreateSurveyPage);
 
 // GET Route for displaying Create MCQ Survey page - READ operation
-router.get("/createMCQ", surveysController.displayMCQSurveyPage);
+router.get("/createMCQ", requireAuth, surveysController.displayMCQSurveyPage);
 
 // POST Route for processing MCQ Survey page - CREATE operation
 router.post("/createMCQ", surveysController.processMCQSurveyPage);
 
 // GET Route for displaying Create MCQ Questions page - READ operation
-router.get("/addMCQQuestions/:id", surveysController.displayAddMCQQuestions);
+router.get("/addMCQQuestions/:id", requireAuth, surveysController.displayAddMCQQuestions);
 
 // POST Route for processing Create MCQ Questions page - CREATE operation
 router.post("/addMCQQuestions/:id", surveysController.processAddMCQQuestions);
 
 // GET Route for displaying Add MCQ Questions page - READ operation
-router.get("/addOneMCQQuestion/:id", surveysController.displayOneMCQQuestion);
+router.get("/addOneMCQQuestion/:id", requireAuth, surveysController.displayOneMCQQuestion);
 
 // POST Route for processing Add MCQ Questions page - CREATE operation
 router.post("/addOneMCQQuestion/:id", surveysController.processOneMCQQuestion);
 
 // POST Route for cancelling Add MCQ Questions page - DELETE operation
-router.get("/cancelMCQQuestion/:id", surveysController.processCancelMCQQuestion);
+router.get("/cancelMCQQuestion/:id", requireAuth, surveysController.processCancelMCQQuestion);
 
 // GET Route for displaying Add One MCQ Question page - READ operation
-router.get("/addOneMCQQuestion/addOptions/:id", surveysController.displayAddOptions);
+router.get("/addOneMCQQuestion/addOptions/:id", requireAuth, surveysController.displayAddOptions);
 
 // POST Route for processing Add One MCQ Question page - CREATE operation
 router.post("/addOneMCQQuestion/addOptions/:id", surveysController.processAddOptions);
 
 //GET Route for the Create TF Survey page - READ Operation
-router.get("/createTF", surveysController.displayTFSurveyPage);
+router.get("/createTF", requireAuth, surveysController.displayTFSurveyPage);
 
 // GET Route for displaying Update Survey page - READ operation 
-router.get("/updateSurvey/:id", surveysController.displayUpdateSurveyPage);
+router.get("/updateSurvey/:id", requireAuth, surveysController.displayUpdateSurveyPage);
 
 // POST Route for processing Update Survey page - UPDATE operation 
 router.post("/updateSurvey/:id", surveysController.processUpdateSurveyPage);
 
 // GET Route for displaying Update Question page - READ operation
-router.get("/updateQuestion/:id", surveysController.displayUpdateQuestionPage);
+router.get("/updateQuestion/:id", requireAuth, surveysController.displayUpdateQuestionPage);
 
 // POST Route for processing Update Question page - UPDATE operation
 router.post("/updateQuestion/:id", surveysController.processUpdateQuestionPage);
 
 // GET to perform Deletion - DELETE operation
-router.get("/delete/:id", surveysController.performDelete);
+router.get("/delete/:id", requireAuth, surveysController.performDelete);
 
 // GET Route for displaying show result page
-router.get("/showResult/:id", surveysController.displayShowResultSurveyPage);
+router.get("/showResult/:id", requireAuth, surveysController.displayShowResultSurveyPage);
 
 // GET Route for the respond Survey page
 router.get("/respondSurvey/:id/:index", surveysController.displayRespondSurveyPage);

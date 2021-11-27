@@ -7,8 +7,7 @@
   -->
 
 <!-- Partials -->
-<%- include ../partials/header.ejs %>
-<%- include ../partials/main_nav.ejs %> 
+<%- include ../partials/header.ejs %> <%- include ../partials/main_nav.ejs %>
 <%- include ../partials/content.ejs %>
 
 <!-- Page Content -->
@@ -17,144 +16,151 @@
     <div class="row">
       <div class="col-sm-3 mb-2">
         <label for="title">Survey Title: </label>
-        <input type="text"
-          class="form-control"
-          name="title"
-          id="title"
-          value="<%= Survey.title %>"
-          <% if (title == "Edit Survey") { %>
-            required
-          <% } else { %>
-            readonly = "readonly" 
-          <% } %>>
-      </div> 
+        <input type="text" class="form-control" name="title" id="title"
+        value="<%= Survey.title %>" <% if (title == "Edit Survey") { %> required
+        <% } else { %> readonly = "readonly" <% } %>>
+      </div>
 
       <div class="col-sm-3">
         <label for="title">Due Date: </label>
-        <input type="date"
-          class="form-control"
-          name="duedate"
-          id="duedate"
-          value="<%= Survey.expirationDate %>"
-          <% if (title == "Edit Survey") { %>
-            required
-          <% } else { %>
-            readonly = "readonly"
-          <% } %>>
+        <input type="date" class="form-control" name="duedate" id="duedate"
+        value="<%= Survey.expirationDate %>" <% if (title == "Edit Survey") { %>
+        required <% } else { %> readonly = "readonly" <% } %>>
       </div>
     </div>
-    <div class = "row">
+    <div class="row">
       <div class="col-md-7 mb-4">
         <label for="description">Description: </label>
-        <input type="text"
-          class="form-control"
-          name="description"
-          id="description"
-          value="<%= Survey.description %>"
-          <% if (title == "Edit Survey") { %>
-            required
-          <% } else { %>
-            readonly = "readonly"
-          <% } %>>
+        <input type="text" class="form-control" name="description"
+        id="description" value="<%= Survey.description %>" <% if (title == "Edit Survey") { %> 
+          required <% } else { %> readonly = "readonly" <% } %>>
       </div>
-    </div> 
-    
-    <% if (title == "Edit Survey") { %>
-      <% for (let count = 0; count < QuestionList.length; count++) { %>
-        <div class="row">
-          <div class="col-md-6 mb-2">
-            <label for="question">Question <%= count + 1 %>: </label>
-            <input type="text"
-            class="form-control"
-            name="question<%= count + 1 %>"
-            id="question<%= count + 1%>"
-            value="<%= QuestionList[count].title %>"
-            readonly = "readonly">
-          </div>
-          <a href="/surveys/updateQuestion/<%= QuestionList[count]._id %> " class="btn btn-warning col-md-1 mt-3">
-            <i class="fas fa-sm fa-pencil-alt"></i> Edit
-          </a>
-        </div>
-        <% for (let num = (count+1)*4; num >= (count+1)*4 && num < ((count+1)*4)+4; num++) { %>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="option" id="option">
-            <label class="form-check-label" for="option">
-              <input type="text"
-              class="form-control mb-2"
-              name="option<%= count + 1 %>"
-              id="option<%= count + 1 %>"
-              value="<%= OptionList[num-4].title %>"
-              readonly="readonly">
-            </label>
-          </div>
-        <% } %>
-      <% } %>
-    <% } else { %>
-      <div class="row">
-        <div class="col-md-6 mb-2">
-          <label for="question">Question: </label>
-          <input type="text"
+    </div>
+
+    <% if (title == "Edit Survey") { %> <% for (let count = 0; count <
+    QuestionList.length; count++) { %>
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <label for="question">Question <%= count + 1 %>: </label>
+        <input
+          type="text"
+          class="form-control"
+          name="question<%= count + 1 %>"
+          id="question<%= count + 1%>"
+          value="<%= QuestionList[count].title %>"
+          readonly="readonly"
+        />
+      </div>
+      <a
+        href="/surveys/updateQuestion/<%= QuestionList[count]._id %> "
+        class="btn btn-warning col-md-1 mt-3"
+      >
+        <i class="fas fa-sm fa-pencil-alt"></i> Edit
+      </a>
+    </div>
+    <% for (let num = (count+1)*4; num >= (count+1)*4 && num < ((count+1)*4)+4;
+    num++) { %>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="option" id="option" />
+      <label class="form-check-label" for="option">
+        <input
+          type="text"
+          class="form-control mb-2"
+          name="option<%= count + 1 %>"
+          id="option<%= count + 1 %>"
+          value="<%= OptionList[num-4].title %>"
+          readonly="readonly"
+        />
+      </label>
+    </div>
+    <% } %> <% } %> <% } else { %>
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <label for="question">Question: </label>
+        <input
+          type="text"
           class="form-control"
           name="question"
           id="question"
           value="<%= Question.title %>"
-          required>
-        </div>
+          required
+        />
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="option" id="option">
-        <label class="form-check-label" for="option">
-          <input type="text"
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="option" id="option" />
+      <label class="form-check-label" for="option">
+        <input
+          type="text"
           class="form-control mb-2"
           name="option1"
           id="option1"
           value="<%= OptionList[0].title %>"
-          required>
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="option" id="option">
-        <label class="form-check-label" for="option">
-          <input type="text"
+          required
+        />
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="option" id="option" />
+      <label class="form-check-label" for="option">
+        <input
+          type="text"
           class="form-control mb-2"
           name="option2"
           id="option2"
           value="<%= OptionList[1].title %>"
-          required>
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="option" id="option">
-        <label class="form-check-label" for="option">
-          <input type="text"
+          required
+        />
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="option" id="option" />
+      <label class="form-check-label" for="option">
+        <input
+          type="text"
           class="form-control mb-2"
           name="option3"
           id="option3"
           value="<%= OptionList[2].title %>"
-          required>
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="option" id="option">
-        <label class="form-check-label" for="option">
-          <input type="text"
+          required
+        />
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="option" id="option" />
+      <label class="form-check-label" for="option">
+        <input
+          type="text"
           class="form-control mb-2"
           name="option4"
           id="option4"
           value="<%= OptionList[3].title %>"
-          required>
-        </label>
-      </div>
-      <input type="hidden" value="<%= Survey._id %>" name="surveyid" id="surveyid">
+          required
+        />
+      </label>
+    </div>
+    <input
+      type="hidden"
+      value="<%= Survey._id %>"
+      name="surveyid"
+      id="surveyid"
+    />
     <% } %>
-    
-    <input class="btn btn-success col-md-1 mt-5 offset-md-6" type="submit" value="Update">
+
+    <input
+      class="btn btn-success col-md-1 mt-5 offset-md-6"
+      type="submit"
+      value="Update"
+    />
     <% if (title == "Editing Question...") { %>
-      <a href="/surveys/updateSurvey/<%= Survey._id %>">
-        <input class="btn btn-warning col-md-1 mt-5" type="button" value="Cancel">
-      </a>
-    <% } else { %>
-    <% } %>
+    <a href="/surveys/updateSurvey/<%= Survey._id %>">
+      <input
+        class="btn btn-warning col-md-1 mt-5"
+        type="button"
+        value="Cancel"
+      />
+    </a>
+    <% } else { %> <% } %>
   </form>
 </div>
 
