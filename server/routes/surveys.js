@@ -27,12 +27,6 @@ function requireAuth(req, res, next) {
 // GET Route for the Survey List page - READ operation
 router.get("/", requireAuth, surveysController.displaySurveyList);
 
-// GET Route for the Create Survey page - CREATE operation
-router.get("/createSurvey", requireAuth, surveysController.displayCreateSurveyPage);
-
-// POST Route for the Create Survey page - CREATE operation
-// router.post("/createSurvey", surveysController.processCreateSurveyPage);
-
 // GET Route for displaying Create MCQ Survey page - READ operation
 router.get("/createMCQ", requireAuth, surveysController.displayMCQSurveyPage);
 
@@ -59,18 +53,6 @@ router.get("/addOneMCQQuestion/addOptions/:id", requireAuth, surveysController.d
 
 // POST Route for processing Add One MCQ Question page - CREATE operation
 router.post("/addOneMCQQuestion/addOptions/:id", requireAuth, surveysController.processAddOptions);
-
-// //GET Route for the Create TF Survey page - READ Operation
-// router.get("/createTF", requireAuth, surveysController.displayTFSurveyPage);
-
-// //POST Route for the Create TF Survey page - CREATE Operation
-// router.post("/createTF", surveysController.processTFSurveyPage);
-
-// // GET Route for displaying Create TF Questions page - READ operation
-// router.get("/addTFQuestions/:id", requireAuth, surveysController.displayAddTFQuestions);
-
-// // POST Route for processing Create TF Questions page - CREATE operation
-// router.post("/addTFQuestions/:id", surveysController.processAddTFQuestions);
 
 // GET Route for displaying Update Survey page - READ operation 
 router.get("/updateSurvey/:id", requireAuth, surveysController.displayUpdateSurveyPage);

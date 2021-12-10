@@ -41,13 +41,6 @@ module.exports.displaySurveyList = (req, res, next) => {
   });
 };
 
-module.exports.displayCreateSurveyPage = (req, res, next) => {
-  res.render("surveyAdmin/createSurvey", {
-    title: "Create Survey",
-    displayName: req.user ? req.user.displayName : "",
-  });
-};
-
 module.exports.displayMCQSurveyPage = (req, res, next) => {
   optionArray = [];
 
@@ -329,42 +322,6 @@ module.exports.processAddOptions = (req, res, next) => {
     }
   });
 };
-
-// module.exports.displayTFSurveyPage = (req, res, next) => {
-//   optionArray = [];
-
-//   res.render("surveyAdmin/createTF", {
-//     title: "T/F Survey",
-//     displayName: req.user ? req.user.displayName : "",
-//   });
-// };
-
-// module.exports.processTFSurveyPage = (req, res, next) => {
-//   let newSurvey = Survey({
-//     title: req.body.title,
-//     type: "T/F",
-//     expirationDate: req.body.expirationdate,
-//     description: req.body.description,
-//     userId: req.user._id,
-//   });
-
-//   Survey.create(newSurvey, (err, survey) => {
-//     if (err) {
-//       console.log(err);
-//       res.end(err);
-//     } else {
-//       res.redirect("/surveys/addTFQuestions/" + survey._id);
-//     }
-//   });
-// };
-
-// module.exports.displayAddTFQuestions= (req, res, next) => {
-
-// }
-
-// module.exports.processAddTFQuestions = (req, res, next) => {
-  
-// }
 
 module.exports.displayUpdateSurveyPage = (req, res, next) => {
   let id = req.params.id;
