@@ -472,7 +472,8 @@ module.exports.processUpdateQuestionPage = (req, res, next) => {
 
 module.exports.processDeleteQuestion = (req, res, next) => {
   let id = req.params.id;
-
+  updateOptionArray = [];
+  
   Question.findById(id, (err, question) => {
     if (err) {
       console.log(err);
