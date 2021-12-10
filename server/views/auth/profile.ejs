@@ -67,13 +67,23 @@
           />
         </fieldset>
 
-        <fieldset class="form-group text-center">
-          <a href="/edit-profile/<%= profile._id %>">
-            <input type="button" class="btn btn-success" value="Edit Profile" />
-          </a>
-          <a href="/surveys"
-            ><input type="button" class="btn btn-warning" value="Cancel" />
-          </a>
+        <fieldset class="form-group">
+          <div class="row">
+            <div class="col-md-3 offset-md-3">
+            <a href="/edit-profile/<%= profile._id %>">
+              <input
+                type="button"
+                class="btn btn-success mt-3"
+                value="Edit Profile"
+              />
+            </a>
+            </div>
+            <div class="col-md-1">
+            <a href="/surveys"
+              ><input type="button" class="btn btn-warning mt-3" value="Cancel" />
+            </a>
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>

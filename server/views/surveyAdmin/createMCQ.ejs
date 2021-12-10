@@ -104,14 +104,18 @@
             value=""
             required>
           </div>
+        </div>
           <input type="hidden" value="<%= Survey._id %>" name="surveyid" id="surveyid">
           <div class="row">
-            <input class="btn btn-success col-md-2 offset-md-1" type="submit" value="Add Options">
+            <div class="col-md-2 offset-md-2">
+            <input class="btn btn-success mt-2" type="submit" value="Add Options">
+          </div>
+          <div class="col-md-1">
             <a href="/surveys/cancelMCQQuestion/<%= Question._id %>">
-              <input class="btn btn-warning offset-md-6" type="button" value="Cancel">
+              <input class="btn btn-warning mt-2" type="button" value="Cancel">
             </a>
           </div>
-        </div>
+          </div>
         <% for (let count = 1; count < QuestionList.length; count++) { %>
           <div class="row">
             <div class="col-md-6 mb-2">
@@ -228,10 +232,9 @@
 
       <% if (title == "MCQ Survey") { %>
         <div class="row">
-          <input type="submit" class="btn btn-primary col-md-2 mb-3 offset-md-2" value="Proceed to Questions">
-        </div>
-        <div class="row">
-          <div class="col-md-1 offset-md-6">
+          <div class="col-md-2 mb-3 offset-md-2">
+          <input type="submit" class="btn btn-primary" value="Proceed to Questions"></div>
+          <div class="col-md-1 mb-3">
             <a href="/surveys">
               <input class="btn btn-warning" type="button" value="Cancel">
             </a>
