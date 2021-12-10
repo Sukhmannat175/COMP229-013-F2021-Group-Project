@@ -588,13 +588,6 @@ module.exports.performDelete = (req, res, next) => {
   });
 };
 
-module.exports.displayShowResultSurveyPage = (req, res, next) => {
-  res.render("surveyAdmin/showResult", {
-    title: "Result",
-    displayName: req.user ? req.user.displayName : "",
-  });
-};
-
 module.exports.displayRespondSurveyPage = (req, res, next) => {
   let surveyId = req.params.id;
   let Index = req.params.index;
