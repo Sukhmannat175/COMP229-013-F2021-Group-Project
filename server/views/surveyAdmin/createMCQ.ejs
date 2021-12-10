@@ -3,7 +3,7 @@
     File Name:   server/views/surveyAdmin/createMCQ.ejs
     Student#:    301147411, 301182173, 301163120, 301168420, 301182196, 301159644 
     Name:        Marcus Ngooi, Tatsiana Ptushko, Josef Signo, Sukhmannat Singh, Yuko Yamano, Agustin Ignacio Zuluaga
-    Description: Template for create multiple choice question (Not fully implemented yet)
+    Description: Template for create multiple choice question
   -->
 
 <!-- Partials -->
@@ -13,6 +13,9 @@
 
 <!-- Page Content -->
 <div class="container">
+  <% if (title == "Survey Statistics") { %>
+    <div class="d-grid gap-2 col-6 mx-auto"><input type ="button" class="btn btn-primary" id="printButton" value="Print" onclick="window.print();"></div>
+  <% } %>
   <div class="container offset-md-3">  
     <form method="POST" name="questionsForm" autocomplete="off">
       <div class="row">
@@ -177,13 +180,15 @@
         <div class="row">
           <input class="btn btn-primary col-md-2 offset-md-2" type="submit" value="Save Option">
         </div>
-        <div class="row">
-          <div class="col-md-2">
-            <a href="/surveys/addMCQQuestions/<%= Survey._id %>">
-              <input class="btn btn-success" type="button" value="Save Question">
-            </a>
+        <% if (OptionList.length > 0) { %>
+          <div class="row">
+            <div class="col-md-2">
+              <a href="/surveys/addMCQQuestions/<%= Survey._id %>">
+                <input class="btn btn-success" type="button" value="Save Question">
+              </a>
+            </div>
           </div>
-        </div>
+        <% } %>
       <% } else if (title == "Survey Statistics") { %>
         <h4><i>This survey was answered by <%= ResponseList.length %> people</i></h4>
         <% for (let count = 0; count < QuestionList.length; count++) { %>
