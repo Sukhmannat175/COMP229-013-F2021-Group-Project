@@ -60,20 +60,20 @@ router.get("/addOneMCQQuestion/addOptions/:id", requireAuth, surveysController.d
 // POST Route for processing Add One MCQ Question page - CREATE operation
 router.post("/addOneMCQQuestion/addOptions/:id", surveysController.processAddOptions);
 
-// //GET Route for the Create TF Survey page - READ Operation
-// router.get("/createTF", requireAuth, surveysController.displayTFSurveyPage);
+//GET Route for the Create TF Survey page - READ Operation
+router.get("/createTF", requireAuth, surveysController.displayTFSurveyPage);
 
-// //POST Route for the Create TF Survey page - CREATE Operation
-// router.post("/createTF", surveysController.processTFSurveyPage);
+//POST Route for the Create TF Survey page - CREATE Operation
+router.post("/createTF", surveysController.processTFSurveyPage);
 
-// // GET Route for displaying Create TF Questions page - READ operation
-// router.get("/addTFQuestions/:id", requireAuth, surveysController.displayAddTFQuestions);
+// GET Route for displaying Create TF Questions page - READ operation
+router.get("/addTFQuestions/:id", requireAuth, surveysController.displayAddTFQuestions);
 
-// // POST Route for processing Create TF Questions page - CREATE operation
-// router.post("/addTFQuestions/:id", surveysController.processAddTFQuestions);
+// POST Route for processing Create TF Questions page - CREATE operation
+router.post("/addTFQuestions/:id", surveysController.processAddTFQuestions);
 
-// // GET Route for displaying Update Survey page - READ operation 
-// router.get("/updateSurvey/:id", requireAuth, surveysController.displayUpdateSurveyPage);
+// GET Route for displaying Update Survey page - READ operation 
+router.get("/updateSurvey/:id", requireAuth, surveysController.displayUpdateSurveyPage);
 
 // POST Route for processing Update Survey page - UPDATE operation 
 router.post("/updateSurvey/:id", surveysController.processUpdateSurveyPage);
