@@ -31,7 +31,7 @@ router.get("/", requireAuth, surveysController.displaySurveyList);
 router.get("/createSurvey", requireAuth, surveysController.displayCreateSurveyPage);
 
 // POST Route for the Create Survey page - CREATE operation
-router.post("/createSurvey", surveysController.processCreateSurveyPage);
+// router.post("/createSurvey", surveysController.processCreateSurveyPage);
 
 // GET Route for displaying Create MCQ Survey page - READ operation
 router.get("/createMCQ", requireAuth, surveysController.displayMCQSurveyPage);
@@ -89,9 +89,6 @@ router.get("/deleteQuestion/:id", requireAuth, surveysController.processDeleteQu
 
 // GET to perform Deletion - DELETE operation
 router.get("/delete/:id", requireAuth, surveysController.performDelete);
-
-// GET Route for displaying show result page
-router.get("/showResult/:id", requireAuth, surveysController.displayShowResultSurveyPage);
 
 // GET Route for the respond Survey page
 router.get("/respondSurvey/:id/:index", surveysController.displayRespondSurveyPage);

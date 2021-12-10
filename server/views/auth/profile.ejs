@@ -12,7 +12,6 @@
 
 <!-- Content for Register Page -->
 <main class="container">
-
   <div class="row">
     <div class="offset-md-4 col-md-4">
       <form method="POST" autocomplete="off">
@@ -28,7 +27,7 @@
             autofocus
           />
         </fieldset>
-<!-- 
+        <!-- 
         <fieldset class="form-group">
           <label for="password">Password: </label>
           <input
@@ -69,10 +68,11 @@
         </fieldset>
 
         <fieldset class="form-group text-center">
-          <input type="button" class="btn btn-success" value="Edit Profile" />   
-            <a href="/edit-profile/<%= profile._id %>">
+          <a href="/edit-profile/<%= profile._id %>">
+            <input type="button" class="btn btn-success" value="Edit Profile" />
           </a>
-          <a href="/surveys"><input type="button" class="btn btn-warning" value="Cancel"/>
+          <a href="/surveys"
+            ><input type="button" class="btn btn-warning" value="Cancel" />
           </a>
         </fieldset>
       </form>

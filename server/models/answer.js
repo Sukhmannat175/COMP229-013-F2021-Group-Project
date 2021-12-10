@@ -14,6 +14,7 @@ let Answer = mongoose.Schema(
   {
     questionId: mongoose.Schema.Types.ObjectId,
     optionId: mongoose.Schema.Types.ObjectId,
+    surveyId: mongoose.Schema.Types.ObjectId,
     surveyResponseId: mongoose.Schema.Types.ObjectId,
   },
   {

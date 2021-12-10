@@ -14,17 +14,7 @@
 
 <!-- Page Content -->
 <div class="container">
- <!--  <h1>"< %= Survey.title %>"</h1>  
-        <form class="form" method="post">
-                <div class="form-group">
-                    <label for="title"></label>
-                    <input type="text" class=" col-md-3"
-                        id="title"
-                        name="title" 
-                        value = ""
-                        required>
-                </div>
--->     
+
         <br/>
         <br/>   
     <div class="row">
@@ -33,14 +23,15 @@
             <%= QuestionList[NewIndex-1].title %></h5>
           <% for(let count = 0; count <OptionList.length; count++) { %>
             <h6> <input name="option" type="radio" value="<%= OptionList[count]._id %>" required="required"> &nbsp; <%= OptionList[count].title %></h6>
-          <% } %> 
-
+          <% } %>
+           <input type="hidden" id="surveyResponseId" name="surveyResponseId" value="<%= SurveyResponseId%>">
           <!--buttons-->
+          
             <% if(NewIndex >= QuestionList.length){ %>
-            
-            <a href="/surveys/respondSurvey/<%= SurveyId%>/<%=NewIndex%> " class="btn btn-primary"  type="submit"> Finish</a> 
+            <input name="Finish" type="submit" value="Finish" >
             <% } else{ %>
-              <a href="/surveys/respondSurvey/<%= SurveyId%>/<%=NewIndex%> " class="btn btn-primary" type="submit"> Next</a>
+            <input name="Next" type="submit" value="Next" >
+             
             <% } %>  
          </div>
         </form> 
