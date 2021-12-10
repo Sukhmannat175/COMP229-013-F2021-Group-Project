@@ -31,6 +31,7 @@ include partials/content.ejs %>
             <tr>
               <% for(let count = 0; count < SurveyList.length; count++) { %>
               <td class="text-center col-2">
+                <% if (new Date(SurveyList[count].expirationDate) >= new Date()) { %>
                 <a
                   href="surveys/respondSurvey/<%= SurveyList[count]._id %>/<%= 0%>"
                   class="btn btn-info"
@@ -38,6 +39,10 @@ include partials/content.ejs %>
                 >
                   <%= SurveyList[count].title %></a
                 >
+                <% } else { %>
+                  <%= SurveyList[count].title %></a
+                >
+                <% } %>
               </td>
               <td class="text-center col-4">
                 <%= SurveyList[count].description %>
@@ -46,7 +51,7 @@ include partials/content.ejs %>
                 <%= SurveyList[count].expirationDate %>
               </td>
               <td class="text-center col-2">
-                <%= SurveyList[count].surveyStatus %>
+                <%= (new Date(SurveyList[count].expirationDate) >= new Date()) ? "Active" : "Expired" %>
               </td>
             </tr>
             <% } %>
